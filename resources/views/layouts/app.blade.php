@@ -32,11 +32,30 @@
         <div class="wrapper">
             @livewire('navigation-menu')
 
-            <main>
-                <!-- {{ $slot }} -->
-            </main>
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+            <div class="page-content">
+                {{ $slot }}
+                <!-- container -->
+                @livewire('footer')
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
         </div>
-            
+        
+        <!--  Modal content for the Large example -->
+        <div class="modal fade" id="bs-modal-lg" tabindex="-1" role="dialog"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="spinner-border text-primary m-2" role="status"></div>
+                    </div>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
             
 
             <!-- Page Heading -->
@@ -59,6 +78,8 @@
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
 
+        @stack('script')
+        
         @livewireScripts
     </body>
 </html>

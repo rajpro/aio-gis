@@ -27,64 +27,6 @@
 
       <div data-simplebar>
 
-          <!-- User -->
-          <div class="sidenav-user">
-              <div class="dropdown-center">
-                  <a class="topbar-link dropdown-toggle text-reset drop-arrow-none px-2 d-flex align-items-center justify-content-center" data-bs-toggle="dropdown" data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
-                      <img src="assets/images/users/avatar-1.jpg" width="42" class="rounded-circle me-2 d-flex" alt="user-image">
-                      <span class="d-flex flex-column gap-1 sidebar-user-name">
-                          <h4 class="my-0 fw-bold fs-15">Maxine Kennedy</h4>
-                          <h6 class="my-0">Admin Head</h6>
-                      </span>
-                      <i class="ri-arrow-down-s-line d-block sidebar-user-arrow align-middle ms-2"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
-                      <div class="dropdown-header noti-title">
-                          <h6 class="text-overflow m-0">Welcome !</h6>
-                      </div>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item">
-                          <i class="ri-account-circle-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">My Account</span>
-                      </a>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item">
-                          <i class="ri-wallet-3-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">Wallet : <span class="fw-semibold">$89.25k</span></span>
-                      </a>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item">
-                          <i class="ri-settings-2-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">Settings</span>
-                      </a>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item">
-                          <i class="ri-question-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">Support</span>
-                      </a>
-
-                      <div class="dropdown-divider"></div>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item">
-                          <i class="ri-lock-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">Lock Screen</span>
-                      </a>
-
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item active fw-semibold text-danger">
-                          <i class="ri-logout-box-line me-1 fs-16 align-middle"></i>
-                          <span class="align-middle">Sign Out</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-
           <!--- Sidenav Menu -->
           <ul class="side-nav">
               <li class="side-nav-title">Navigation</li>
@@ -93,11 +35,102 @@
                   <a href="index.html" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-dashboard-3-line"></i></span>
                       <span class="menu-text"> Dashboard </span>
-                      <span class="badge bg-danger rounded-pill">5</span>
                   </a>
               </li>
 
-              <li class="side-nav-title mt-2">
+              <li class="side-nav-item">
+                  <a data-bs-toggle="collapse" href="#sidebarReport" aria-expanded="false" aria-controls="sidebarReport"
+                      class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
+                      <span class="menu-text"> Reports </span>
+                      <span class="menu-arrow"></span>
+                  </a>
+                  <div class="collapse" id="sidebarReport">
+                      <ul class="sub-menu">
+                          <li class="side-nav-item">
+                              <a href="layouts-horizontal.html" class="side-nav-link">Demographics</a>
+                          </li>
+                          <li class="side-nav-item">
+                              <a href="layouts-detached.html" class="side-nav-link">Crime</a>
+                          </li>
+                          <li class="side-nav-item">
+                              <a href="layouts-full.html" class="side-nav-link">Socio</a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+
+              <li class="side-nav-title">Records</li>
+
+              <li class="side-nav-item">
+                  <a href="{{url('/households')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-text"> Registered Households </span>
+                  </a>
+              </li>
+
+              <li class="side-nav-item">
+                  <a href="{{url('/households/pending')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-text"> Pending Households </span>
+                  </a>
+              </li>
+
+              <li class="side-nav-title">Admin Section</li>
+
+              <li class="side-nav-item">
+                  <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers"
+                      class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
+                      <span class="menu-text"> Users </span>
+                      <span class="menu-arrow"></span>
+                  </a>
+                  <div class="collapse" id="sidebarUsers">
+                      <ul class="sub-menu">
+                          <li class="side-nav-item">
+                              <a href="{{url('users')}}" class="side-nav-link">View Users</a>
+                          </li>
+                          <li class="side-nav-item">
+                              <a href="{{url('users/create')}}" class="side-nav-link">Add Users</a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+
+              <li class="side-nav-item">
+                  <a data-bs-toggle="collapse" href="#sidebarPermission" aria-expanded="false" aria-controls="sidebarPermission"
+                      class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
+                      <span class="menu-text"> Permissions </span>
+                      <span class="menu-arrow"></span>
+                  </a>
+                  <div class="collapse" id="sidebarPermission">
+                      <ul class="sub-menu">
+                          <li class="side-nav-item">
+                              <a href="layouts-horizontal.html" class="side-nav-link">View Permission</a>
+                          </li>
+                          <li class="side-nav-item">
+                              <a href="layouts-detached.html" class="side-nav-link">Add Permission</a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+
+              <li class="side-nav-item">
+                  <a href="{{url('/households/pending')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-text"> Setting </span>
+                  </a>
+              </li>
+
+              <li class="side-nav-item">
+                  <a href="{{url('/households/pending')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-text"> Help & Support </span>
+                  </a>
+              </li>
+
+              <!-- <li class="side-nav-title mt-2">
                   More
               </li>
 
@@ -111,25 +144,25 @@
                   <div class="collapse" id="sidebarLayouts">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="layouts-horizontal.html" target="_blank" class="side-nav-link">Horizontal</a>
+                              <a href="layouts-horizontal.html" class="side-nav-link">Horizontal</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-detached.html" target="_blank" class="side-nav-link">Detached</a>
+                              <a href="layouts-detached.html" class="side-nav-link">Detached</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-full.html" target="_blank" class="side-nav-link">Full View</a>
+                              <a href="layouts-full.html" class="side-nav-link">Full View</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-fullscreen.html" target="_blank" class="side-nav-link">Fullscreen View</a>
+                              <a href="layouts-fullscreen.html" class="side-nav-link">Fullscreen View</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-hover.html" target="_blank" class="side-nav-link">Hover Menu</a>
+                              <a href="layouts-hover.html" class="side-nav-link">Hover Menu</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-compact.html" target="_blank" class="side-nav-link">Compact</a>
+                              <a href="layouts-compact.html" class="side-nav-link">Compact</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-icon-view.html" target="_blank" class="side-nav-link">Icon View</a>
+                              <a href="layouts-icon-view.html" class="side-nav-link">Icon View</a>
                           </li>
                       </ul>
                   </div>
@@ -202,7 +235,7 @@
                           </li>
                       </ul>
                   </div>
-              </li>
+              </li> -->
 
           </ul>
 
@@ -273,10 +306,10 @@
                   <div class="dropdown">
                       <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown"
                           data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                          <img src="assets/images/users/avatar-1.jpg" width="32" class="rounded-circle me-lg-2 d-flex"
-                              alt="user-image">
+                          <img src="{{ Auth::user()->profile_photo_url }}" width="32" class="rounded-circle me-lg-2 d-flex"
+                              alt="{{ Auth::user()->name }}">
                           <span class="d-lg-flex flex-column gap-1 d-none">
-                              <h5 class="my-0">Maxine K.</h5>
+                              <h5 class="my-0">{{ Auth::user()->name }}</h5>
                           </span>
                           <i class="ri-arrow-down-s-line d-none d-lg-block align-middle ms-2"></i>
                       </a>
@@ -287,36 +320,12 @@
                           </div>
 
                           <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item">
-                              <i class="ri-account-circle-line me-1 fs-16 align-middle"></i>
-                              <span class="align-middle">My Account</span>
-                          </a>
-
-                          <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item">
-                              <i class="ri-wallet-3-line me-1 fs-16 align-middle"></i>
-                              <span class="align-middle">Wallet : <span class="fw-semibold">$89.25k</span></span>
-                          </a>
-
-                          <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item">
-                              <i class="ri-settings-2-line me-1 fs-16 align-middle"></i>
-                              <span class="align-middle">Settings</span>
-                          </a>
-
-                          <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item">
-                              <i class="ri-question-line me-1 fs-16 align-middle"></i>
-                              <span class="align-middle">Support</span>
+                          <a href="{{url('user/profile')}}" class="dropdown-item">
+                              <i class="ri-profile-line me-1 fs-16 align-middle"></i>
+                              <span class="align-middle">Profile</span>
                           </a>
 
                           <div class="dropdown-divider"></div>
-
-                          <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item">
-                              <i class="ri-lock-line me-1 fs-16 align-middle"></i>
-                              <span class="align-middle">Lock Screen</span>
-                          </a>
 
                           <!-- item-->
                           <a href="javascript:void(0);" class="dropdown-item active fw-semibold text-danger">

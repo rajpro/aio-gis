@@ -37,7 +37,7 @@
                       <span class="menu-text"> Dashboard </span>
                   </a>
               </li>
-
+              @can('view reports')
               <li class="side-nav-item">
                   <a data-bs-toggle="collapse" href="#sidebarReport" aria-expanded="false" aria-controls="sidebarReport"
                       class="side-nav-link">
@@ -59,29 +59,42 @@
                       </ul>
                   </div>
               </li>
+              @endcan
 
+              @can('view records')
               <li class="side-nav-title">Records</li>
-
               <li class="side-nav-item">
-                  <a href="{{url('/households')}}" class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
-                      <span class="menu-text"> Registered Households </span>
+                  <a data-bs-toggle="collapse" href="#sidebarHousehold" aria-expanded="false" aria-controls="sidebarHousehold"
+                      class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-ancient-pavilion-line"></i></span>
+                      <span class="menu-text"> Household </span>
+                      <span class="menu-arrow"></span>
                   </a>
+                  <div class="collapse" id="sidebarHousehold">
+                      <ul class="sub-menu">
+                            @can('view household')
+                            <li class="side-nav-item">
+                                <a href="{{url('/households')}}" class="side-nav-link">Registered</a>
+                            </li>
+                            @endcan
+                            @can('view household pending')
+                            <li class="side-nav-item">
+                                <a href="{{url('/households/pending')}}" class="side-nav-link">Pending</a>
+                            </li>
+                            @endcan
+                      </ul>
+                  </div>
               </li>
+              @endcan
 
-              <li class="side-nav-item">
-                  <a href="{{url('/households/pending')}}" class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
-                      <span class="menu-text"> Pending Households </span>
-                  </a>
-              </li>
-
+              @can('view admin')
               <li class="side-nav-title">Admin Section</li>
 
+              @can('view user')
               <li class="side-nav-item">
                   <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers"
                       class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
+                      <span class="menu-icon"><i class="ri-group-line"></i></span>
                       <span class="menu-text"> Users </span>
                       <span class="menu-arrow"></span>
                   </a>
@@ -90,17 +103,21 @@
                           <li class="side-nav-item">
                               <a href="{{route('users.index')}}" class="side-nav-link">View Users</a>
                           </li>
+                          @can('update user')
                           <li class="side-nav-item">
                               <a href="{{route('users.create')}}" class="side-nav-link">Add Users</a>
                           </li>
+                          @endcan
                       </ul>
                   </div>
               </li>
+              @endcan
 
+              @can('view permission')
               <li class="side-nav-item">
                   <a data-bs-toggle="collapse" href="#sidebarPermission" aria-expanded="false" aria-controls="sidebarPermission"
                       class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
+                      <span class="menu-icon"><i class="ri-rotate-lock-line"></i></span>
                       <span class="menu-text"> Permissions </span>
                       <span class="menu-arrow"></span>
                   </a>
@@ -112,21 +129,26 @@
                       </ul>
                   </div>
               </li>
+              @endcan
 
+              @can('view setting')
               <li class="side-nav-item">
                   <a href="{{url('/households/pending')}}" class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-icon"><i class="ri-settings-3-line"></i></span>
                       <span class="menu-text"> Setting </span>
                   </a>
               </li>
+              @endcan
 
+              @can('view help')
               <li class="side-nav-item">
                   <a href="{{url('/households/pending')}}" class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-home-4-line"></i></span>
+                      <span class="menu-icon"><i class="ri-flag-line"></i></span>
                       <span class="menu-text"> Help & Support </span>
                   </a>
               </li>
-
+              @endcan
+              @endcan
               <!-- <li class="side-nav-title mt-2">
                   More
               </li>
@@ -325,10 +347,13 @@
                           <div class="dropdown-divider"></div>
 
                           <!-- item-->
-                          <a href="javascript:void(0);" class="dropdown-item active fw-semibold text-danger">
+                          <a href="javascript:void(0);" onclick="document.getElementById('logout').submit();" class="dropdown-item active fw-semibold text-danger">
                               <i class="ri-logout-box-line me-1 fs-16 align-middle"></i>
                               <span class="align-middle">Sign Out</span>
                           </a>
+                          <form method="POST" action="{{ route('logout') }}" id="logout" style="display: none;">
+                            @csrf
+                        </form>
                       </div>
                   </div>
               </div>

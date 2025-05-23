@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Surveyor;
+use App\Models\Demographic;
 
 class ReportController extends Controller
 {
@@ -14,13 +16,86 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         if($request->page == "demographics"){
-            return view('report.index');
+            extract($this->demographic());
+            return view('report.index', compact('surveyor', 'chart'));
         } else if($request->page == "crime"){
-            return view('report.crime');
+            extract($this->crime());
+            return view('report.crime', compact('surveyor', 'chart'));
         } else if($request->page == "socio"){
-            return view('report.socio');
+            extract($this->socio());
+            return view('report.socio', compact('surveyor', 'chart'));
         }
         
+    }
+
+    private function demographic()
+    {
+        $male_female_count = [];
+        $chart = [];
+        $surveyor = Surveyor::with("demographic")->get();
+        
+        foreach($surveyor as $value) {
+            if(!empty($male_female_count[$value->village])){
+                $male_female_count[$value->village]['Male'] += $value->demographic->member_details["Male"];
+                $male_female_count[$value->village]['Female'] += $value->demographic->member_details["Female"];
+            }else{
+                $male_female_count[$value->village]['Male'] = $value->demographic->member_details["Male"];
+                $male_female_count[$value->village]['Female'] = $value->demographic->member_details["Female"];
+            }
+        }
+
+        foreach ($male_female_count as $key => $value) {
+            $chart['label'][] = $key;
+            $chart['Male'][] = $value['Male'];
+            $chart['Female'][] = $value['Female'];
+        }
+        return compact("surveyor", 'chart');
+    }
+
+    private function crime()
+    {
+        $toc = [];
+        $chart = [];
+        $surveyor = Surveyor::with("crime")->get();
+        
+        foreach($surveyor as $value) {
+            if($value->crime->crime == 1){
+                if(empty($toc[$value->crime->toc])){
+                    $toc[$value->crime->toc] = 1;
+                }else{
+                    $toc[$value->crime->toc] += 1;
+                }
+            }
+        }
+
+        foreach ($toc as $key => $value) {
+            $chart['label'][] = $key;
+            $chart['value'][] = $value;
+        }
+
+        return compact("surveyor", "chart");
+    }
+
+    private function socio()
+    {
+        $toc = [];
+        $chart = [];
+        $surveyor = Surveyor::with("socio")->get();
+        
+        foreach($surveyor as $value) {
+            if(empty($toc[$value->village])){
+                $toc[$value->village] = $value->socio->qty;
+            }else{
+                $toc[$value->village] += $value->socio->qty;
+            }
+        }
+
+        foreach ($toc as $key => $value) {
+            $chart['label'][] = $key;
+            $chart['fh'][] = $value;
+        }
+
+        return compact("surveyor", "chart");
     }
 
     /**

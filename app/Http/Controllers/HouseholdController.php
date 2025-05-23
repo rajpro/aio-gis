@@ -10,6 +10,7 @@ use App\Models\Surveyor;
 use App\Models\Crime;
 use App\Models\Demographic;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -19,6 +20,29 @@ class HouseholdController extends Controller
     {
         $data = Surveyor::get();
         return view('components.household', compact('data'));
+    }
+
+    public function dashboard()
+    {
+        $cards['hhs'] = Surveyor::count('*');
+        $cards['gp'] = Surveyor::distinct('village')->count('*');
+        $cards['population'] = Demographic::selectRaw('SUM(total_member) as total')->first();
+        $cards['village'] = Surveyor::distinct('block')->count('*');
+
+        $ngo = Surveyor::select('team')->distinct()->get();
+
+        $village = DB::table('surveyors')
+            ->whereIn('block', function ($query) {
+                $query->select('block')
+                    ->from('surveyors')
+                    ->groupBy('block')
+                    ->havingRaw('COUNT(DISTINCT village) > 1');
+            })
+            ->select('block', 'village')
+            ->distinct()
+            ->get();
+
+        return view('dashboard', compact('cards', 'ngo', 'village'));
     }
 
     public function dataUpload(Request $request)

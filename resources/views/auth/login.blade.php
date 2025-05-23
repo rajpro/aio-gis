@@ -1,48 +1,57 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
+                    <a href="index.html" class="auth-brand mb-4">
+                        <img src="assets/images/logo-dark.png" alt="dark logo" height="26" class="logo-dark">
+                        <img src="assets/images/logo.png" alt="logo light" height="26" class="logo-light">
                     </a>
-                @endif
 
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
+                    <h4 class="fw-semibold mb-2 fs-18">Log in to your account</h4>
+
+                    <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+
+                    @if (session('status'))
+                        <div class="mb-4 font-medium text-sm text-green-600">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('login') }}" method="post" class="text-start mb-3">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="example-email">Email</label>
+                            <input type="email" id="example-email" name="email" class="form-control" placeholder="Enter your email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="example-password">Password</label>
+                            <input type="password" id="example-password" name="password" class="form-control" placeholder="Enter your password">
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signin">
+                                <label class="form-check-label" for="checkbox-signin">Remember me</label>
+                            </div>
+
+                            <a href="#" class="text-muted border-bottom border-dashed">Forget Password</a>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary fw-semibold" type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    <p class="text-muted fs-14 mb-4">Don't have an account? <a href="{{route('register')}}" class="fw-semibold text-danger ms-1">Sign Up !</a></p>
+
+                    <p class="mt-auto mb-0">
+                        <script>document.write(new Date().getFullYear())</script> © Highdmin - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                    </p>
+                </div>
             </div>
-        </form>
-    </x-jet-authentication-card>
+        </div>
+    </div>
 </x-guest-layout>

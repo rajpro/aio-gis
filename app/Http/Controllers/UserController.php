@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
         $req = [
             "name" => $request->name,
             "email" => $request->email,
-            "password" => $request->password
+            "password" => Hash::make($request->password)
         ];
 
         $user = new User($req);
@@ -96,7 +97,7 @@ class UserController extends Controller
         $user->email = $request->email;
 
         if(!empty($request->password)) {
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
         }
 
         $user->update();

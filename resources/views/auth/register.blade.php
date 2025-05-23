@@ -1,60 +1,58 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
+                    <a href="index.html" class="auth-brand mb-4">
+                        <img src="assets/images/logo-dark.png" alt="dark logo" height="26" class="logo-dark">
+                        <img src="assets/images/logo.png" alt="logo light" height="26" class="logo-light">
+                    </a>
 
-        <x-jet-validation-errors class="mb-4" />
+                    <h4 class="fw-semibold mb-2 fs-18">Welcome to Highdmin Admin</h4>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                    <p class="text-muted mb-4">Enter your name , email address and password to access account.</p>
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+                    <form action="{{route('register')}}" method="post" class="text-start mb-3">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="example-name">Your Name</label>
+                            <input type="text" id="example-name" name="name" class="form-control" placeholder="Enter your name">
+                        </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="example-email">Email</label>
+                            <input type="email" id="example-email" name="email" class="form-control" placeholder="Enter your email">
+                        </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="example-password">Password</label>
+                            <input type="password" id="example-password" name="password" class="form-control" placeholder="Enter your password">
+                        </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password2">Confirm Password</label>
+                            <input type="password" id="password2" name="password_confirmation" class="form-control" placeholder="Enter your password">
+                        </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signin">
+                                <label class="form-check-label" for="checkbox-signin">I agree to all <a href="#!" class="link-dark text-decoration-underline">Terms & Condition</a> </label>
                             </div>
                         </div>
-                    </x-jet-label>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary fw-semibold" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+
+                    <p class="text-nuted fs-14 mb-4">Already have an account? <a href="auth-login.html" class="fw-semibold text-danger ms-1">Login !</a></p>
+
+                    <p class="mt-auto mb-0">
+                        <script>document.write(new Date().getFullYear())</script> © Highdmin - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                    </p>
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
             </div>
-        </form>
-    </x-jet-authentication-card>
+        </div>
+    </div>
 </x-guest-layout>

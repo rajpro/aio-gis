@@ -16,7 +16,6 @@ class UserController extends Controller
     public function index()
     {
         $data = User::get();
-        // dd($data);
         return view('users.index', compact('data'));
     }
 

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         return view('dashboard');
     })->name('dashboard');
     Route::resource('/users', UserController::class);
+    Route::resource('/permission', PermissionController::class);
+    Route::resource('/report', ReportController::class);
     Route::get('/households', [HouseholdController::class, 'index']);
     Route::get('/households/data', [HouseholdController::class, 'dataUpload']);
     Route::post('/households/data', [HouseholdController::class, 'dataUpload']);

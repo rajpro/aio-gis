@@ -32,7 +32,7 @@
               <li class="side-nav-title">Navigation</li>
 
               <li class="side-nav-item">
-                  <a href="index.html" class="side-nav-link">
+                  <a href="{{url('/dashboard')}}" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-dashboard-3-line"></i></span>
                       <span class="menu-text"> Dashboard </span>
                   </a>
@@ -48,13 +48,13 @@
                   <div class="collapse" id="sidebarReport">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="layouts-horizontal.html" class="side-nav-link">Demographics</a>
+                              <a href="{{route('report.index', ['page' => 'demographics'])}}" class="side-nav-link">Demographics</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-detached.html" class="side-nav-link">Crime</a>
+                              <a href="{{route('report.index', ['page' => 'crime'])}}" class="side-nav-link">Crime</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="layouts-full.html" class="side-nav-link">Socio</a>
+                              <a href="{{route('report.index', ['page' => 'socio'])}}" class="side-nav-link">Socio</a>
                           </li>
                       </ul>
                   </div>
@@ -88,10 +88,10 @@
                   <div class="collapse" id="sidebarUsers">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="{{url('users')}}" class="side-nav-link">View Users</a>
+                              <a href="{{route('users.index')}}" class="side-nav-link">View Users</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="{{url('users/create')}}" class="side-nav-link">Add Users</a>
+                              <a href="{{route('users.create')}}" class="side-nav-link">Add Users</a>
                           </li>
                       </ul>
                   </div>
@@ -107,10 +107,7 @@
                   <div class="collapse" id="sidebarPermission">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="layouts-horizontal.html" class="side-nav-link">View Permission</a>
-                          </li>
-                          <li class="side-nav-item">
-                              <a href="layouts-detached.html" class="side-nav-link">Add Permission</a>
+                              <a href="{{route('permission.index')}}" class="side-nav-link">View Permission</a>
                           </li>
                       </ul>
                   </div>

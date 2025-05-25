@@ -11,6 +11,12 @@ use Carbon\Carbon;
 
 class SurveyorImport implements ToModel, WithStartRow
 {
+
+    /**
+     * Specify the row number to start reading from.
+     *
+     * @return int
+     */
     public function startRow(): int
     {
         return 2; // Start reading from the second row
@@ -25,14 +31,14 @@ class SurveyorImport implements ToModel, WithStartRow
     {
         $baseDate = Carbon::createFromDate(1899, 12, 30);
         return new Surveyor([
-            "village" => $row[0],
-            "block" => $row[1],
-            "location" => new Point($row[2], $row[3]),
-            "hh_id" => $row[4],
-            "survey_date" => $baseDate->copy()->addDays($row[5]),
-            "surveyor_name" => $row[8],
-            "team" => $row[9],
-            "lvu" => $baseDate->copy()->addDays($row[5])
+            "village" => $row[1],
+            "block" => $row[0],
+            "location" => new Point($row[3], $row[4]),
+            "hh_id" => $row[2],
+            "survey_date" => $baseDate->copy()->addDays($row[6]),
+            "surveyor_name" => $row[7],
+            "team" => $row[8],
+            "lvu" => $baseDate->copy()->addDays($row[6])
         ]);
     }
 }

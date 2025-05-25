@@ -24,7 +24,7 @@ class CreateSociosTable extends Migration
             $table->string('peak_mo', 10)->nullable();
             $table->string('land_holding', 20)->nullable();
             $table->string('land_use', 20)->nullable();
-            $table->string('support_received', 20)->nullable();
+            $table->string('support_received', 150)->nullable();
             $table->string('debt', 20)->nullable();
             $table->string('debt_src', 20)->nullable();
             $table->string('loan', 20)->nullable();

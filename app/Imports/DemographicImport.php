@@ -9,6 +9,12 @@ use App\Models\Surveyor;
 
 class DemographicImport implements ToModel, WithStartRow
 {
+
+    /**
+     * Specify the row number to start reading from.
+     *
+     * @return int
+     */
     public function startRow(): int
     {
         return 2; // Start reading from the second row
@@ -21,10 +27,11 @@ class DemographicImport implements ToModel, WithStartRow
     */
     public function model(array $row)
     {
-        $survey = Surveyor::where('hh_id', $row[4])->first();
+        $survey = Surveyor::where('hh_id', $row[2])->first();
         return new Demographic([
             "surveyor_id" => $survey->id,
-            'head_name' => $row[10],
+            'head_name' => $row[9],
+            'mobile' => $row[10],
             'gender' => $row[11],
             'age' => $row[12],
             'total_member' => $row[13],

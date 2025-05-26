@@ -42,9 +42,9 @@ class PopulateData extends Command
      */
     public function handle()
     {
-        Excel::import(new SurveyorImport, getcwd()."/gis.xlsx");
-        Excel::import(new DemographicImport, getcwd()."/gis.xlsx");
-        Excel::import(new CrimeImport, getcwd()."/gis.xlsx");
-        Excel::import(new SocioImport, getcwd()."/gis.xlsx");
+        Excel::import(new SurveyorImport, getcwd()."/public/gis.xlsx");
+        Excel::import(new DemographicImport, getcwd()."/public/gis.xlsx");
+        Excel::import(new CrimeImport, getcwd()."/public/gis.xlsx");
+        Excel::import(new SocioImport, getcwd()."/public/gis.xlsx");
     }
 }

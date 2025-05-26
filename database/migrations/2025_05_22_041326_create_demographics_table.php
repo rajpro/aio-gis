@@ -17,7 +17,7 @@ class CreateDemographicsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('surveyor_id');
             $table->string('head_name', 120);
-            $table->enum('gender', ['Male', 'Female']);
+            $table->enum('gender', ['Male', 'Female', 'Other']);
             $table->tinyInteger('age')->unsigned(); // small age values
             $table->unsignedInteger('total_member');
             $table->json('member_details');

@@ -4,14 +4,13 @@
         <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
             <div class="col-xl-4 col-lg-5 col-md-6">
                 <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
-                    <a href="index.html" class="auth-brand mb-4">
-                        <img src="assets/images/logo-dark.png" alt="dark logo" height="26" class="logo-dark">
-                        <img src="assets/images/logo.png" alt="logo light" height="26" class="logo-light">
-                    </a>
+                    
+                    <img src="{{asset('logo.png')}}" alt="" style="width: 100px;margin: auto;">
 
-                    <h4 class="fw-semibold mb-2 fs-18">Log in to your account</h4>
+                    <h4 class="fw-semibold mb-2 mt-2 fs-18">CONSERVATION & DEVELOPMENT PLAN <br>
+                        FOR THE PARTICULARLY VULNERABLE TRIBAL GROUPS (PTGs)</h4>
 
-                    <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+                    <p class="text-muted mb-4">LODHA DEVELOPMENT AGENCY, MORADA, MAYURBHANJ</p>
 
                     @if (session('status'))
                         <div class="mb-4 font-medium text-sm text-green-600">

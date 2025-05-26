@@ -33,7 +33,7 @@ class SocioImport implements ToModel, WithStartRow
             "forest_production" => $row[19],
             "qty" => $row[20],
             "forest_harvest_week" => $row[21],
-            "forest_harvest_ton" => $row[22],
+            "forest_harvest_ton" => round($row[22]),
             "income_per_wk" => $row[23],
             "income_per_mo" => $row[24],
             "gross_revenue" => $row[25],

@@ -40,9 +40,9 @@ class PopulateRoles extends Command
     public function handle()
     {
         // Create roles
-        // Role::create(['name' => 'Super Admin', 'guard_name' => 'web']);
-        // Role::create(['name' => 'GP', 'guard_name' => 'web']);
-        // Role::create(['name' => 'NGO', 'guard_name' => 'web']);
+        Role::create(['name' => 'Super Admin', 'guard_name' => 'web']);
+        Role::create(['name' => 'GP', 'guard_name' => 'web']);
+        Role::create(['name' => 'NGO', 'guard_name' => 'web']);
 
         // Create permissions
         Permission::create(['name' => 'view reports', 'guard_name' => 'web']);

@@ -1,5 +1,81 @@
 <x-app-layout>
     <div class="page-container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card border-secondary border">
+                    <div class="card-body">
+                        <h5 class="fs-13 fw-bold text-uppercase">Total No of Incidents:</h5>
+                        <p class="card-text">Averaging <spam class="fw-bold">15.2 cases per village</spam>, with the highest in <b>Sridam Ch.Pur (Dwarisahi)</b>at <b>28 incidents</b>.</p>
+                        <div class="d-flex align-items-center gap-2 justify-content-between">
+                            <div>
+                                <h3 class="my-2 py-1 fw-bold">328 cases</h3>
+                            </div>
+                            <div class="avatar-xl flex-shrink-0">
+                                <span class="avatar-title bg-secondary-subtle text-secondary rounded-circle fs-42">
+                                    <iconify-icon icon="solar:home-bold"></iconify-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-primary border">
+                    <div class="card-body">
+                        <h5 class="fs-13 fw-bold text-uppercase">Avg. Verified Incident Rate:</h5>
+                        <p class="card-text">Gadigaon had the highest verification rate at 87%, while Bajratundi (Paikbasa) was lowest at 42%</p>
+                        <div class="d-flex align-items-center gap-2 justify-content-between">
+                            <div>
+                                <h3 class="my-2 py-1 fw-bold">53%</h3>
+                            </div>
+                            <div class="avatar-xl flex-shrink-0">
+                                <span class="avatar-title bg-primary-subtle text-primary rounded-circle fs-42">
+                                    <iconify-icon icon="solar:users-group-rounded-bold-duotone"></iconify-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-warning border">
+                    <div class="card-body">
+                        <h5 class="fs-13 fw-bold text-uppercase">Most Common Crime Type</h5>
+                        <p class="card-text">146 theft cases (out of 328 total incidents). Represents 31.9% of all crimes</p>
+                        <div class="d-flex align-items-center gap-2 justify-content-between">
+                            <div>
+                                <h3 class="my-2 py-1 fw-bold">Theft</h3>
+                            </div>
+                            <div class="avatar-xl flex-shrink-0">
+                                <span class="avatar-title bg-warning-subtle text-warning rounded-circle fs-42">
+                                    <iconify-icon icon="solar:accessibility-bold"></iconify-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-info border">
+                    <div class="card-body">
+                        <h5 class="fs-13 fw-bold text-uppercase">YoY Crime Reduction:</h5>
+                        <p class="card-text">Highest drop was seen in Jyotipur (Mahulia GP) at –18.3% YoY.</p>
+                        <div class="d-flex align-items-center gap-2 justify-content-between">
+                            <div>
+                                <h3 class="my-2 py-1 fw-bold">–11.2%</h3>
+                            </div>
+                            <div class="avatar-xl flex-shrink-0">
+                                <span class="avatar-title bg-info-subtle text-info rounded-circle fs-42">
+                                    <iconify-icon icon="solar:hand-money-bold"></iconify-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xl-5">
                 <div class="card">
@@ -24,7 +100,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header border-bottom border-dashed d-flex align-items-center">
-                        <h4 class="header-title">Demographic Data</h4>
+                        <h4 class="header-title">Crime Data</h4>
                     </div>
                     <div class="card-body" data-simplebar style="max-height: 300px;">
                         <table class="table table-bordered mb-0">

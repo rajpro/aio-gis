@@ -29,7 +29,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/households', [HouseholdController::class, 'index']);
     Route::get('/households/data', [HouseholdController::class, 'dataUpload']);
     Route::post('/households/data', [HouseholdController::class, 'dataUpload']);
+    Route::get('/households/download-excel', [HouseholdController::class, 'downloadExcel']);
 
     // Ajax Calls
-    Route::get('/households/view/{id}', [HouseholdController::class, 'view']);
+    Route::get('/households/sidebar/{id}', [HouseholdController::class, 'demoAjax']);
 });

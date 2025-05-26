@@ -1,29 +1,48 @@
-<div class="modal-header">
-    <h5 class="modal-title">Household Details</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"
-        aria-label="Close"></button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodha Document</title>
+    <style>
+        .table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .table tr:nth-child(even){background-color: #f2f2f2;}
+        .table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color:#858585;
+            color: white;
+        }
+    </style>
+</head>
+<body>
 <div class="modal-body">
     <table class="table table-bordered mb-0">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Account No.</th>
-                <th>Balance</th>
-                <th class="text-center">Action</th>
+                <th>GP Block</th>
+                <th>Village</th>
+                <th>Household ID</th>
+                <th>Surveyor Name</th>
+                <th>Surveyor Team</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    <img src="assets/images/users/avatar-6.jpg" alt="table-user" class="avatar-sm me-2 rounded-circle">
-                    Risa D. Pearson
-                </td>
-                <td>AC336 508 2157</td>
-                <td>July 24, 1950</td>
-                <td class="text-center text-muted">
-                    <a href="javascript: void(0);" class="link-reset fs-20 p-1"> <i class="ri-delete-bin-line"></i></a>
-                </td>
+                <td>{{$data->block}}</td>
+                <td>{{$data->village}}</td>
+                <td>{{$data->hh_id}}</td>
+                <td>{{$data->surveyor_name}}</td>
+                <td>{{$data->team}}</td>
             </tr>
         </tbody>
     </table>
@@ -70,3 +89,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

@@ -3,14 +3,14 @@
   <div class="sidenav-menu">
 
       <!-- Brand Logo -->
-      <a href="index.html" class="logo">
+      <a href="{{url('/dashboard')}}" class="logo">
           <span class="logo-light">
-              <span class="logo-lg"><img src="assets/images/logo.png" alt="logo"></span>
+              <span class="logo-lg"><img src="{{asset('logo.png')}}" alt="logo"></span>
               <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
           </span>
 
           <span class="logo-dark">
-              <span class="logo-lg"><img src="assets/images/logo-dark.png" alt="dark logo"></span>
+              <span class="logo-lg"><img src="{{asset('logo.png')}}" alt="dark logo"></span>
               <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
           </span>
       </a>

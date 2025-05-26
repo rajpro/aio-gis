@@ -6,12 +6,14 @@ use App\Imports\SurveyorImport;
 use App\Imports\DemographicImport;
 use App\Imports\CrimeImport;
 use App\Imports\SocioImport;
+use App\Exports\HouseholdExport;
 use App\Models\Surveyor;
 use App\Models\Crime;
 use App\Models\Socio;
 use App\Models\Demographic;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +21,7 @@ class HouseholdController extends Controller
 {
     public function index()
     {
-        $data = Surveyor::get();
+        $data = Surveyor::limit(50)->get();
         return view('components.household', compact('data'));
     }
 
@@ -49,12 +51,17 @@ class HouseholdController extends Controller
     public function dataUpload(Request $request)
     {
         if ($request->isMethod('post')){
-            // Excel::import(new SurveyorImport, $request->file('file'));
-            // Excel::import(new DemographicImport, $request->file('file'));
-            // Excel::import(new CrimeImport, $request->file('file'));
+            Excel::import(new SurveyorImport, $request->file('file'));
+            Excel::import(new DemographicImport, $request->file('file'));
+            Excel::import(new CrimeImport, $request->file('file'));
             Excel::import(new SocioImport, $request->file('file'));
         }
         return view('components.dataupload');
+    }
+
+    public function downloadExcel(Request $request)
+    {
+        return Excel::download(new HouseholdExport, 'household.xlsx');
     }
 
     public function view(Request $request, $id)
@@ -69,6 +76,30 @@ class HouseholdController extends Controller
         $socio_column = collect(Schema::getColumnListing('socios'))
             ->reject(fn($col) => in_array($col, ['id', 'created_at', 'surveyor_id', 'updated_at']))
             ->values();
-        return view('components.modals.household', compact('demo_column', 'crime_column', 'socio_column', 'data'));
+        $pdf = Pdf::loadView('components.modals.household', compact('demo_column', 'crime_column', 'socio_column', 'data'));
+        return $pdf->stream();
+    }
+
+    // Ajax Calls
+    public function demoAjax($id)
+    {
+        // $demog = [];
+        $data = Surveyor::find($id);
+        
+        // foreach($data as $value){
+        //     if(!empty($demog['total_population'])){
+        //         $demog['total_hh'] += 1;
+        //         $demog['total_population'] += $value->demographic->total_member;
+        //         $demog['male'] += $value->demographic->member_details['Male'];
+        //         $demog['female'] += $value->demographic->member_details['Female'];
+        //     }else{
+        //         $demog['total_hh'] = 1;
+        //         $demog['total_population'] = $value->demographic->total_member;
+        //         $demog['male'] = $value->demographic->member_details['Male'];
+        //         $demog['female'] = $value->demographic->member_details['Female'];
+        //     }
+        // }
+
+        return view('components.modals.demographics', compact('data'));
     }
 }

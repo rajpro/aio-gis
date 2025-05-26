@@ -1,8 +1,11 @@
 <x-app-layout>
     <div class="page-container">
         <div class="card">
-            <div class="card-header border-bottom border-dashed d-flex align-items-center">
+            <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
                 <h4 class="header-title">Household Table</h4>
+                <div>
+                    <a href="{{url('households/download-excel')}}" class="btn btn-primary btn-sm save" > Export To Excel </a>
+                </div>
             </div>
             <div class="card-body">
                 
@@ -10,11 +13,10 @@
                     <table class="table table-bordered mb-0">
                         <thead>
                             <tr>
+                                <th>GP Block</th>
                                 <th>Village Name</th>
-                                <th>Block</th>
-                                <th>Location</th>
                                 <th>Household ID</th>
-                                <th>Survey Date</th>
+                                <th>Household Head</th>
                                 <th>Surveyor Name</th>
                                 <th>Team</th>
                                 <th>Last Version Update</th>
@@ -24,16 +26,18 @@
                         <tbody>
                             @foreach($data as $key => $value)
                             <tr>
-                                <td>{{$value['village']}}</td>
                                 <td>{{$value['block']}}</td>
-                                <td>{{$value['location']->getLat()}} - {{$value['location']->getLng()}}</td>
+                                <td>{{$value['village']}}</td>
                                 <td>{{$value['hh_id']}}</td>
-                                <td>{{$value['survey_date']}}</td>
+                                <td>{{$value->demographic->head_name}}</td>
                                 <td>{{$value['surveyor_name']}}</td>
                                 <td>{{$value['team']}}</td>
                                 <td>{{$value['lvu']}}</td>
                                 <td class="text-center text-muted">
-                                    <a href="javascript: void(0);" data-hh-id="{{$value['id']}}" data-bs-toggle="modal" data-bs-target="#bs-modal-lg" class="full-view fs-20 p-1"> <i class="ri-mac-line"></i></a>
+                                    <a href="{{url('/households/view/'.$value['id'])}}" target="_blank" class="full-view fs-20 p-1" style="color:gray;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To View"> <i class="ri-mac-line"></i></a>
+                                    <a href="#" target="_blank" class="full-view fs-20 p-1" style="color:#0acf97;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status"> <i class="ri-bank-card-line"></i></a>
+                                    <a href="{{url('/households/view/'.$value['id'])}}" target="_blank" class="full-view fs-20 p-1" style="color:gray;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To Download Documents"> <i class="ri-folders-line"></i></a>
+                                    <!-- <a href="javascript: void(0);" data-hh-id="{{$value['id']}}" data-bs-toggle="modal" data-bs-target="#bs-modal-lg" class="full-view fs-20 p-1"> <i class="ri-mac-line"></i></a> -->
                                 </td>
                             </tr>
                             @endforeach

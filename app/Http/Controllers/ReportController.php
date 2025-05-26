@@ -17,7 +17,7 @@ class ReportController extends Controller
     {
         if($request->page == "demographics"){
             extract($this->demographic());
-            return view('report.index', compact('surveyor', 'chart'));
+            return view('report.index', compact('surveyor', 'chart', 'map'));
         } else if($request->page == "crime"){
             extract($this->crime());
             return view('report.crime', compact('surveyor', 'chart'));
@@ -28,12 +28,23 @@ class ReportController extends Controller
         
     }
 
+    private function map($surveyor) {
+        $locations = [];
+        foreach ($surveyor as $key => $value) {
+            $locations[] = [
+                "lat" => $value->location->getLat(),
+                "lng" => $value->location->getLng()
+            ];
+        }
+        return json_encode($locations);
+    }
+
     private function demographic()
     {
         $male_female_count = [];
         $chart = [];
         $surveyor = Surveyor::with("demographic")->get();
-        
+        $map = $this->map($surveyor);
         foreach($surveyor as $value) {
             if(!empty($male_female_count[$value->village])){
                 $male_female_count[$value->village]['Male'] += $value->demographic->member_details["Male"];
@@ -49,7 +60,9 @@ class ReportController extends Controller
             $chart['Male'][] = $value['Male'];
             $chart['Female'][] = $value['Female'];
         }
-        return compact("surveyor", 'chart');
+
+
+        return compact("surveyor", 'chart', 'map');
     }
 
     private function crime()
@@ -83,16 +96,28 @@ class ReportController extends Controller
         $surveyor = Surveyor::with("socio")->get();
         
         foreach($surveyor as $value) {
-            if(empty($toc[$value->village])){
-                $toc[$value->village] = $value->socio->qty;
+            if(empty($toc[$value->village]['fv'])){
+                $toc[$value->village]["fv"] = $value->socio->qty;
             }else{
-                $toc[$value->village] += $value->socio->qty;
+                $toc[$value->village]["fv"] += $value->socio->qty;
+            }
+            if(empty($toc[$value->village]['lv'])){
+                $toc[$value->village]["lv"] = $value->socio->gov_investment;
+            }else{
+                $toc[$value->village]["lv"] += $value->socio->gov_investment;
+            }
+            if(empty($toc[$value->village]['gr'])){
+                $toc[$value->village]["gr"] = $value->socio->gross_revenue;
+            }else{
+                $toc[$value->village]["gr"] += $value->socio->gross_revenue;
             }
         }
 
         foreach ($toc as $key => $value) {
             $chart['label'][] = $key;
-            $chart['fh'][] = $value;
+            $chart['fh'][] = $value['fv'];
+            $chart['lv'][] = "-".($value['lv'] / 100000);
+            $chart['gr'][] = $value['gr'] / 100000;
         }
 
         return compact("surveyor", "chart");

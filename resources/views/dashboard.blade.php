@@ -107,12 +107,14 @@
                             <table class="table table-bordered mb-0">
                                 <thead>
                                     <tr>
+                                        <th>Sl. No</th>
                                         <th>NGO Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($ngo as $value)
+                                    @foreach($ngo as $key => $value)
                                     <tr>
+                                        <td>{{$key+1}}</td>
                                         <td>{{$value->team}}</td>
                                     </tr>
                                     @endforeach
@@ -132,14 +134,16 @@
                             <table class="table table-bordered mb-0">
                                 <thead>
                                     <tr>
+                                        <th>Sl. No</th>
                                         <th>Village</th>
                                         <th>GP</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($village as $value)
+                                    @foreach($village as $key => $value)
                                     <tr>
+                                        <td>{{$key+1}}</td>
                                         <td>{{$value->village}}</td>
                                         <td>{{$value->block}}</td>
                                     </tr>

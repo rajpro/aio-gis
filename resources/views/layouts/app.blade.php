@@ -26,6 +26,20 @@
         <!-- Theme Config Js -->
         <script src="{{asset('assets/js/config.js')}}"></script>
 
+        <style>
+            .gridjs-pagination .gridjs-pages a {
+                margin-left: .3rem;
+                border-radius: .3rem !important;
+                border: 1px solid var(--highdmin-border-color);
+                background-color: var(--highdmin-secondary-bg);
+                padding: 5px 12px;
+                color: var(--highdmin-body-color);
+            }
+            .popover {
+                width: 250px;
+            }
+        </style>
+
     </head>
     <body>
         <x-jet-banner />

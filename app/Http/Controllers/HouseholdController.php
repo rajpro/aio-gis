@@ -19,9 +19,28 @@ use Illuminate\Http\Request;
 
 class HouseholdController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Surveyor::limit(50)->get();
+        // $data = Surveyor::first();
+        // $d = $data->demographic->documents;
+        // $k = [
+        //     "10th Certificate" => "10th-cert.jpeg",
+        //     "Land Certificate" => "land-certificate.jpg"
+        // ];
+        // $data->demographic->documents = $k;
+        // $data->demographic->update();
+        // dd("working");
+
+        if(empty($request->searchfor)){
+            $data = Surveyor::paginate(50)->withQueryString();
+        }else if($request->searchfor == "head_name"){
+            $search = $request->search;
+            $data = Surveyor::whereHas('demographic', function($q) use ($search) {
+                $q->where('head_name', 'like', '%' . $search . '%');
+            })->paginate(50)->withQueryString();
+        }else{
+            $data = Surveyor::where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
+        }
         return view('components.household', compact('data'));
     }
 
@@ -81,25 +100,23 @@ class HouseholdController extends Controller
     }
 
     // Ajax Calls
-    public function demoAjax($id)
+    public function demoAjax($type, $id)
     {
-        // $demog = [];
         $data = Surveyor::find($id);
-        
-        // foreach($data as $value){
-        //     if(!empty($demog['total_population'])){
-        //         $demog['total_hh'] += 1;
-        //         $demog['total_population'] += $value->demographic->total_member;
-        //         $demog['male'] += $value->demographic->member_details['Male'];
-        //         $demog['female'] += $value->demographic->member_details['Female'];
-        //     }else{
-        //         $demog['total_hh'] = 1;
-        //         $demog['total_population'] = $value->demographic->total_member;
-        //         $demog['male'] = $value->demographic->member_details['Male'];
-        //         $demog['female'] = $value->demographic->member_details['Female'];
-        //     }
-        // }
-
-        return view('components.modals.demographics', compact('data'));
+        switch ($type) {
+            case 'demographic':
+                return view('components.modals.demographics', compact('data'));
+                break;
+            case 'crime':
+                return view('components.modals.crime', compact('data'));
+                break;
+            case 'socio':
+                return view('components.modals.socio', compact('data'));
+                break;
+            
+            default:
+                return view("No data Found");
+                break;
+        }
     }
 }

@@ -146,11 +146,29 @@
         </div>
     </div>
 
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h4 id="offcanvasRightLabel">Lodha PVGT Demographics</h4>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <div>
+                <h4>Village Wise Demography</h4>
+                <p>Below is the population, literacy and per capita income information about PVGT Lodha groups of Mayurbhanj District, Odisha</p>
+            </div>
+            <div id="sidebar-data">
+
+            </div>
+        </div>
+    </div>
+
     @push('script')
     <!-- Apex Chart js -->
     <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
 
     <script>
+        const myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
         var colors = ["#777edd", "#45bbe0", "#0acf97", "#fa5c7c", "#e3eaef"],
     dataColors = $("#simple-pie").data("colors"),
     options = {
@@ -187,6 +205,7 @@
 
     const initialZoom = 9;
     const initialCenter = { lat: 21.912284221895693, lng: 86.40897624871276 };
+    const polygonCoords = {!!json_encode(config('constants.mayurbhanj'))!!}.map(coord => ({ lat: coord[1], lng: coord[0] }));
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
@@ -195,6 +214,19 @@
             mapTypeId: "satellite",
             disableDefaultUI: true
         });
+
+        const polygon = new google.maps.Polygon({
+            paths: polygonCoords,
+            strokeColor: "#FFFFFF",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.1,
+        });
+
+        polygon.setMap(map);
+
+        mark();
 
         // Zoom In button
         // document.getElementById("zoom-in").addEventListener("click", () => {
@@ -205,6 +237,30 @@
         // document.getElementById("zoom-out").addEventListener("click", () => {
         //     map.setZoom(map.getZoom() - 1);
         // });
+    }
+
+    function mark()
+    {
+        const markers = {!!$map!!};
+        markers.forEach((position, index) => {
+            const k = position[0];
+            const d = position[1]['id'];
+            console.log(k,d);
+            const mk = new google.maps.Marker({
+                position: k,
+                map,
+                title: `Marker ${index + 1}`
+            });
+
+            mk.addListener("click", function() {
+                myOffcanvas.show();
+                let url = "{{url('/households/sidebar/crime')}}"+"/"+d;
+                $.get( url, function( data ) {
+                    console.log(data);
+                    $( "#sidebar-data" ).html( data );
+                });
+            });
+        });
     }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK-sWQPm-lhoyy3BsrOtl4NUksGVxZp6o&callback=initMap"></script>

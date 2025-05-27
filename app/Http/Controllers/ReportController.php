@@ -20,10 +20,10 @@ class ReportController extends Controller
             return view('report.index', compact('surveyor', 'chart', 'map'));
         } else if($request->page == "crime"){
             extract($this->crime());
-            return view('report.crime', compact('surveyor', 'chart'));
+            return view('report.crime', compact('surveyor', 'chart', 'map'));
         } else if($request->page == "socio"){
             extract($this->socio());
-            return view('report.socio', compact('surveyor', 'chart'));
+            return view('report.socio', compact('surveyor', 'chart', 'map'));
         }
         
     }
@@ -32,8 +32,13 @@ class ReportController extends Controller
         $locations = [];
         foreach ($surveyor as $key => $value) {
             $locations[] = [
-                "lat" => $value->location->getLat(),
-                "lng" => $value->location->getLng()
+                [
+                    "lat" => $value->location->getLat(),
+                    "lng" => $value->location->getLng()
+                ],
+                [
+                    "id" => $value->id
+                ]
             ];
         }
         return json_encode($locations);
@@ -70,7 +75,7 @@ class ReportController extends Controller
         $toc = [];
         $chart = [];
         $surveyor = Surveyor::with("crime")->get();
-        
+        $map = $this->map($surveyor);
         foreach($surveyor as $value) {
             if($value->crime->crime == 1){
                 if(empty($toc[$value->crime->toc])){
@@ -86,7 +91,7 @@ class ReportController extends Controller
             $chart['value'][] = $value;
         }
 
-        return compact("surveyor", "chart");
+        return compact("surveyor", "chart", 'map');
     }
 
     private function socio()
@@ -94,7 +99,7 @@ class ReportController extends Controller
         $toc = [];
         $chart = [];
         $surveyor = Surveyor::with("socio")->get();
-        
+        $map = $this->map($surveyor);
         foreach($surveyor as $value) {
             if(empty($toc[$value->village]['fv'])){
                 $toc[$value->village]["fv"] = $value->socio->qty;
@@ -120,7 +125,7 @@ class ReportController extends Controller
             $chart['gr'][] = $value['gr'] / 100000;
         }
 
-        return compact("surveyor", "chart");
+        return compact("surveyor", "chart", 'map');
     }
 
     /**

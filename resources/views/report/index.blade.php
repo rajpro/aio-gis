@@ -26,7 +26,7 @@
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
-                                <h3 class="my-2 py-1 fw-bold">2019</h3>
+                                <h3 class="my-2 py-1 fw-bold">5.4</h3>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-primary-subtle text-primary rounded-circle fs-42">
@@ -44,7 +44,7 @@
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
-                                <h3 class="my-2 py-1 fw-bold">2019</h3>
+                                <h3 class="my-2 py-1 fw-bold">1.5</h3>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-warning-subtle text-warning rounded-circle fs-42">
@@ -62,7 +62,7 @@
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
-                                <h3 class="my-2 py-1 fw-bold">2019</h3>
+                                <h3 class="my-2 py-1 fw-bold"> ₹ 1,802.00 </h3>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-info-subtle text-info rounded-circle fs-42">
@@ -148,7 +148,7 @@
         <div class="offcanvas-header">
             <h4 id="offcanvasRightLabel">Lodha PVGT Demographics</h4>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div> <!-- end offcanvas-header-->
+        </div>
 
         <div class="offcanvas-body">
             <div>
@@ -158,7 +158,7 @@
             <div id="sidebar-data">
 
             </div>
-        </div> <!-- end offcanvas-body-->
+        </div>
     </div>
 
     @push('script')
@@ -206,7 +206,6 @@
 
     const initialZoom = 9;
     const initialCenter = { lat: 21.912284221895693, lng: 86.40897624871276 };
-    
     const polygonCoords = {!!json_encode(config('constants.mayurbhanj'))!!}.map(coord => ({ lat: coord[1], lng: coord[0] }));
 
     function initMap() {
@@ -229,7 +228,6 @@
         polygon.setMap(map);
 
         mark();
-        poly();
 
 
         // Zoom In button
@@ -247,38 +245,22 @@
     {
         const markers = {!!$map!!};
         markers.forEach((position, index) => {
-            
+            const k = position[0];
+            const d = position[1]['id'];
+            console.log(k,d);
             const mk = new google.maps.Marker({
-                position,
-                map,
-                title: `Marker ${index + 1}`
+                position: k,
+                map
             });
 
-            // mk.addListener("click", function() {
-            //     myOffcanvas.show();
-            //     let url = "{{url('/households/sidebar')}}"+"/"+position[0];
-            //     $.get( url, function( data ) {
-            //         $( "#sidebar-data" ).html( data );
-            //     });
-            // });
-        });
-    }
-
-    function poly()
-    {
-        const data = {!!json_encode(config('constants.village'))!!};
-        Object.entries(data).forEach((d, index) => {
-            const polyco = d[1].map(coord => ({lat: coord[1], lng: coord[0]}));
-            const polygon = new google.maps.Polygon({
-                paths: polyco,
-                strokeColor: "#FFFFFF",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#3399ff",
-                fillOpacity: 0.8,
+            mk.addListener("click", function() {
+                myOffcanvas.show();
+                let url = "{{url('/households/sidebar/demographic')}}"+"/"+d;
+                $.get( url, function( data ) {
+                    console.log(data);
+                    $( "#sidebar-data" ).html( data );
+                });
             });
-
-            polygon.setMap(map);
         });
     }
 

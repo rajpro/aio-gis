@@ -5,6 +5,7 @@ use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::post('/households/data', [HouseholdController::class, 'dataUpload']);
     Route::get('/households/download-excel', [HouseholdController::class, 'downloadExcel']);
     Route::get('/households/view/{id}', [HouseholdController::class, 'view']);
+    Route::get('/households/status/{status}', [HouseholdController::class, 'status']);
+    Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
 
     // Ajax Calls
     Route::get('/households/sidebar/{string}/{id}', [HouseholdController::class, 'demoAjax']);

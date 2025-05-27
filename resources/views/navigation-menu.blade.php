@@ -43,19 +43,19 @@
                   <a data-bs-toggle="collapse" href="#sidebarReport" aria-expanded="false" aria-controls="sidebarReport"
                       class="side-nav-link">
                       <span class="menu-icon"><i class="ri-folder-chart-line"></i></span>
-                      <span class="menu-text"> Reports </span>
+                      <span class="menu-text"> Admin Reports </span>
                       <span class="menu-arrow"></span>
                   </a>
                   <div class="collapse" id="sidebarReport">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="{{route('report.index', ['page' => 'demographics'])}}" class="side-nav-link">Demographics</a>
+                              <a href="{{route('report.index', ['page' => 'demographics'])}}" class="side-nav-link">Demographic Report</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="{{route('report.index', ['page' => 'crime'])}}" class="side-nav-link">Crime</a>
+                              <a href="{{route('report.index', ['page' => 'crime'])}}" class="side-nav-link">Crime Report</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="{{route('report.index', ['page' => 'socio'])}}" class="side-nav-link">Socio</a>
+                              <a href="{{route('report.index', ['page' => 'socio'])}}" class="side-nav-link">Socio Economic Development Report</a>
                           </li>
                       </ul>
                   </div>
@@ -68,19 +68,24 @@
                   <a data-bs-toggle="collapse" href="#sidebarHousehold" aria-expanded="false" aria-controls="sidebarHousehold"
                       class="side-nav-link">
                       <span class="menu-icon"><i class="ri-ancient-pavilion-line"></i></span>
-                      <span class="menu-text"> Household </span>
+                      <span class="menu-text"> Database Management </span>
                       <span class="menu-arrow"></span>
                   </a>
                   <div class="collapse" id="sidebarHousehold">
                       <ul class="sub-menu">
                             @can('view household')
                             <li class="side-nav-item">
-                                <a href="{{url('/households')}}" class="side-nav-link">Registered</a>
+                                <a href="{{url('/households')}}" class="side-nav-link">Completed Households</a>
+                            </li>
+                            @endcan
+                            @can('view household')
+                            <li class="side-nav-item">
+                                <a href="{{url('/households/status/incomplete')}}" class="side-nav-link">Incomplete Households</a>
                             </li>
                             @endcan
                             @can('view household pending')
                             <li class="side-nav-item">
-                                <a href="{{url('/households/pending')}}" class="side-nav-link">Pending</a>
+                                <a href="{{url('/households/status/pending')}}" class="side-nav-link">Pending Households</a>
                             </li>
                             @endcan
                       </ul>
@@ -96,37 +101,19 @@
                   <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers"
                       class="side-nav-link">
                       <span class="menu-icon"><i class="ri-group-line"></i></span>
-                      <span class="menu-text"> Users </span>
+                      <span class="menu-text"> Admin Management </span>
                       <span class="menu-arrow"></span>
                   </a>
                   <div class="collapse" id="sidebarUsers">
                       <ul class="sub-menu">
                           <li class="side-nav-item">
-                              <a href="{{route('users.index')}}" class="side-nav-link">View Users</a>
+                              <a href="{{route('users.index')}}" class="side-nav-link">Add/Remove Admin</a>
                           </li>
-                          @can('update user')
+                          @can('view permission')
                           <li class="side-nav-item">
-                              <a href="{{route('users.create')}}" class="side-nav-link">Add Users</a>
+                              <a href="{{route('permission.index')}}" class="side-nav-link">Edit Permissions</a>
                           </li>
                           @endcan
-                      </ul>
-                  </div>
-              </li>
-              @endcan
-
-              @can('view permission')
-              <li class="side-nav-item">
-                  <a data-bs-toggle="collapse" href="#sidebarPermission" aria-expanded="false" aria-controls="sidebarPermission"
-                      class="side-nav-link">
-                      <span class="menu-icon"><i class="ri-rotate-lock-line"></i></span>
-                      <span class="menu-text"> Permissions </span>
-                      <span class="menu-arrow"></span>
-                  </a>
-                  <div class="collapse" id="sidebarPermission">
-                      <ul class="sub-menu">
-                          <li class="side-nav-item">
-                              <a href="{{route('permission.index')}}" class="side-nav-link">View Permission</a>
-                          </li>
                       </ul>
                   </div>
               </li>
@@ -141,14 +128,56 @@
               </li>
               @endcan
 
-              @can('view help')
+              @can('update help')
               <li class="side-nav-item">
-                  <a href="{{url('/households/pending')}}" class="side-nav-link">
+                  <a href="{{url('/')}}" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-flag-line"></i></span>
                       <span class="menu-text"> Help & Support </span>
                   </a>
               </li>
               @endcan
+              
+              @can('update help')
+              <li class="side-nav-item">
+                  <a href="{{url('/')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-flag-line"></i></span>
+                      <span class="menu-text"> Manage Survey </span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view user')
+              <li class="side-nav-item">
+                  <a data-bs-toggle="collapse" href="#sidebarInvoice" aria-expanded="false" aria-controls="sidebarInvoice"
+                      class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-group-line"></i></span>
+                      <span class="menu-text"> Invoices </span>
+                      <span class="menu-arrow"></span>
+                  </a>
+                  <div class="collapse" id="sidebarInvoice">
+                      <ul class="sub-menu">
+                          <li class="side-nav-item">
+                              <a href="{{route('invoice.index')}}" class="side-nav-link">View Invoices</a>
+                          </li>
+                          @can('view permission')
+                          <li class="side-nav-item">
+                              <a href="{{route('invoice.create')}}" class="side-nav-link">Create Invoice</a>
+                          </li>
+                          @endcan
+                      </ul>
+                  </div>
+              </li>
+              @endcan
+
+              @can('update help')
+              <li class="side-nav-item">
+                  <a href="{{url('/')}}" class="side-nav-link">
+                      <span class="menu-icon"><i class="ri-flag-line"></i></span>
+                      <span class="menu-text"> System Settings </span>
+                  </a>
+              </li>
+              @endcan
+
               @endcan
               <!-- <li class="side-nav-title mt-2">
                   More

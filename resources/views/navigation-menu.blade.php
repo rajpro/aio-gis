@@ -10,10 +10,11 @@
           </span>
 
           <span class="logo-dark">
-              <span class="logo-lg"><img src="{{asset('logo.png')}}" alt="dark logo"></span>
+              <span class="logo-lg"><img src="{{asset('logo.png')}}" alt="dark logo" style="height:80px;"></span>
               <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
           </span>
       </a>
+      <p style="margin:0 25px;">CONSERVATION & DEVELOPMENT PLAN (for PGTs)</p>
 
       <!-- Sidebar Hover Menu Toggle Button -->
       <button class="button-sm-hover">

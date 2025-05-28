@@ -53,13 +53,18 @@
                                         <option value="team">NGO</option>
                                     </select>
                                 </div>
-                                <div class="mb-2">
-                                    <textarea type="text" id="qry" name="search" class="form-control form-control-sm" placeholder="Enter your Message"></textarea>
-                                </div>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-primary btn-sm">Send</button>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-2">
+                                    <textarea type="text" id="qry" name="search" class="form-control form-control-sm" placeholder="Enter your Message"></textarea>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -69,6 +74,9 @@
                     <table class="table table-bordered mb-0">
                         <thead>
                             <tr>
+                                <th>
+                                    <input type="checkbox" class="form-check-input" id="customCheck1">
+                                </th>
                                 <th>Sl. No</th>
                                 <th>Photo</th>
                                 <th>Household Head</th>
@@ -79,12 +87,16 @@
                                 <th>Surveyor Name</th>
                                 <th>Team</th>
                                 <th>Last Version Update</th>
+                                <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $key => $value)
                             <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input" name="hh[]" id="customCheck1">
+                                </td>
                                 <td>{{$key+1}}</td>
                                 <td><img src="{{asset('no-image.jpg')}}" alt="" width="45" class="rounded-circle mx-1"></td>
                                 <td>
@@ -97,6 +109,16 @@
                                 <td>{{$value['surveyor_name']}}</td>
                                 <td>{{$value['team']}}</td>
                                 <td>{{$value['lvu']}}</td>
+                                <td>
+                                    @if($value['status'] == "Active")
+                                    <i class="ri-circle-fill fs-12 text-success"></i>
+                                    @elseif($value['status'] == "Surveyed")
+                                    <i class="ri-circle-fill fs-12 text-warning"></i>
+                                    @else
+                                    <i class="ri-circle-fill fs-12 text-danger"></i>
+                                    @endif
+                                    
+                                    {{$value['status']}}</td>
                                 <td class="text-center text-muted">
                                     <a href="{{url('/households/view/'.$value['id'])}}" target="_blank" class=" fs-20 p-1" style="color:gray;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To View"> <i class="ri-mac-line"></i></a>
                                     <a href="javascript:;" class=" fs-20 p-1" style="color:#0acf97;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status"> <i class="ri-bank-card-line"></i></a>

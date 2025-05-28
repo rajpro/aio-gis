@@ -151,10 +151,6 @@
         </div>
 
         <div class="offcanvas-body">
-            <div>
-                <h4>Village Wise Demography</h4>
-                <p>Below is the population, literacy and per capita income information about PVGT Lodha groups of Mayurbhanj District, Odisha</p>
-            </div>
             <div id="sidebar-data">
 
             </div>

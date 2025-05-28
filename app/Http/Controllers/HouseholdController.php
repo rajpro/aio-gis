@@ -44,17 +44,18 @@ class HouseholdController extends Controller
         return view('components.household', compact('data'));
     }
 
-    public function status(Request $request)
+    public function status(Request $request, $status)
     {
+        $status = $status == "incomplete" ? "Surveyed" : ($status == "active" ? "Active" : "Monitoring");
         if(empty($request->searchfor)){
-            $data = Surveyor::paginate(50)->withQueryString();
+            $data = Surveyor::where('status', $status)->paginate(50)->withQueryString();
         }else if($request->searchfor == "head_name"){
             $search = $request->search;
-            $data = Surveyor::whereHas('demographic', function($q) use ($search) {
+            $data = Surveyor::where('status', $status)->whereHas('demographic', function($q) use ($search) {
                 $q->where('head_name', 'like', '%' . $search . '%');
             })->paginate(50)->withQueryString();
         }else{
-            $data = Surveyor::where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
+            $data = Surveyor::where('status', $status)->where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
         }
         return view('components.household', compact('data'));
     }

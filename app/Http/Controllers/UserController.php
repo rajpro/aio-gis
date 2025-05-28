@@ -17,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $data = User::get();
-        return view('users.index', compact('data'));
+        $roles = Role::all()->pluck('name');
+        return view('users.index', compact('data', 'roles'));
     }
 
     /**
@@ -42,7 +43,11 @@ class UserController extends Controller
         $req = [
             "name" => $request->name,
             "email" => $request->email,
-            "password" => Hash::make($request->password)
+            "password" => Hash::make($request->password),
+            "ngo" => $request->ngo,
+            "surveyor" => $request->surveyor,
+            "username" => $request->username,
+            "phone" => $request->phone,
         ];
 
         $user = new User($req);

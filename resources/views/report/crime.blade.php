@@ -148,15 +148,11 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h4 id="offcanvasRightLabel">Lodha PVGT Demographics</h4>
+            <h4 id="offcanvasRightLabel">Lodha PVGT Crime</h4>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
-            <div>
-                <h4>Village Wise Demography</h4>
-                <p>Below is the population, literacy and per capita income information about PVGT Lodha groups of Mayurbhanj District, Odisha</p>
-            </div>
             <div id="sidebar-data">
 
             </div>

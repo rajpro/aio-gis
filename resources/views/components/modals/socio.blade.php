@@ -1,30 +1,42 @@
 <table class="table table-bordered">
     <tr>
+        <th>GP Name</th>
+        <td>{{$data->block}}</td>
+    </tr>
+    <tr>
         <th>Village</th>
         <td>{{$data->village}}</td>
     </tr>
     <tr>
-        <th>Total Household</th>
+        <th>Household ID</th>
         <td>{{$data->hh_id}}</td>
     </tr>
     <tr>
-        <th>Male</th>
-        <td>{{$data->demographic->member_details["Male"]}}</td>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
     </tr>
     <tr>
-        <th>Female</th>
-        <td>{{$data->demographic->member_details['Female']}}</td>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
     </tr>
     <tr>
-        <th>Total Population</th>
-        <td>{{$data->demographic->total_member}}</td>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
     </tr>
     <tr>
-        <th>Literacy Rate</th>
-        <td></td>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
     </tr>
     <tr>
-        <th>Per Capita Income</th>
-        <td></td>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
+    </tr>
+    <tr>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
+    </tr>
+    <tr>
+        <th>Household ID</th>
+        <td>{{$data->hh_id}}</td>
     </tr>
 </table>

@@ -66,20 +66,27 @@ class HouseholdController extends Controller
         $cards['population'] = Demographic::selectRaw('SUM(total_member) as total')->first();
         $cards['village'] = Surveyor::distinct('block')->count('*');
 
-        $ngo = Surveyor::select('team')->distinct()->get();
+        // $ngo = Surveyor::select('team')->distinct()->get();
 
-        $village = DB::table('surveyors')
-            ->whereIn('block', function ($query) {
-                $query->select('block')
-                    ->from('surveyors')
-                    ->groupBy('block')
-                    ->havingRaw('COUNT(DISTINCT village) > 1');
-            })
-            ->select('block', 'village')
-            ->distinct()
-            ->get();
+        // $village = DB::table('surveyors')
+        //     ->whereIn('block', function ($query) {
+        //         $query->select('block')
+        //             ->from('surveyors')
+        //             ->groupBy('block')
+        //             ->havingRaw('COUNT(DISTINCT village) > 1');
+        //     })
+        //     ->select('block', 'village')
+        //     ->distinct()
+        //     ->get();
+        $chart = [];
+        foreach (config('constants.dashboard.gross_chart') as $key => $value) {
+            foreach($value as $v){
+                $chart[$key]['line'][] = $v[0];
+                $chart[$key]['bar'][] = $v[0];
+            }
+        }
 
-        return view('dashboard', compact('cards', 'ngo', 'village'));
+        return view('dashboard', compact('cards', 'chart'));
     }
 
     public function dataUpload(Request $request)

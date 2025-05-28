@@ -72,6 +72,7 @@
                                 <th>Sl. No</th>
                                 <th>Photo</th>
                                 <th>Household Head</th>
+                                <th>Mobile</th>
                                 <th>GP Block</th>
                                 <th>Village Name</th>
                                 <th>Household ID</th>
@@ -89,6 +90,7 @@
                                 <td>
                                     {{$value->demographic->head_name}}
                                 </td>
+                                <td>{{$value->demographic->mobile}}</td>
                                 <td>{{$value['block']}}</td>
                                 <td>{{$value['village']}}</td>
                                 <td>{{$value['hh_id']}}</td>

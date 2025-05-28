@@ -6,6 +6,7 @@ use App\Imports\SurveyorImport;
 use App\Imports\DemographicImport;
 use App\Imports\CrimeImport;
 use App\Imports\SocioImport;
+use App\Imports\UserImport;
 use App\Exports\HouseholdExport;
 use App\Models\Surveyor;
 use App\Models\Crime;
@@ -93,10 +94,11 @@ class HouseholdController extends Controller
     public function dataUpload(Request $request)
     {
         if ($request->isMethod('post')){
-            Excel::import(new SurveyorImport, $request->file('file'));
-            Excel::import(new DemographicImport, $request->file('file'));
-            Excel::import(new CrimeImport, $request->file('file'));
-            Excel::import(new SocioImport, $request->file('file'));
+            Excel::import(new UserImport, $request->file('file'));
+            // Excel::import(new SurveyorImport, $request->file('file'));
+            // Excel::import(new DemographicImport, $request->file('file'));
+            // Excel::import(new CrimeImport, $request->file('file'));
+            // Excel::import(new SocioImport, $request->file('file'));
         }
         return view('components.dataupload');
     }

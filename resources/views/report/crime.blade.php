@@ -89,8 +89,19 @@
             </div>
             <div class="col-xl-7">
                 <div class="card">
-                    <div class="card-body p-0">
+                    <div class="card-body p-0" style="height:403px;">
                         <div id="map" style="height:403px;"></div>
+                        <div class="hide-google">
+                            <p>Powered by AIO|CCDP | ArcGIS ESRI Tech</p>
+                        </div>
+                        <div class="map-button">
+                            <div><i class="ri-crosshair-2-line"></i></div>
+                            <div>
+                                <i class="ri-add-line" id="zoom-in"></i>
+                                <i class="ri-subtract-line" id="zoom-out"></i>
+                            </div>
+                            <div><i class="ri-stack-fill"></i></div>
+                        </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div>
@@ -99,44 +110,43 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header border-bottom border-dashed d-flex align-items-center">
-                        <h4 class="header-title">Crime Data</h4>
+                    <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
+                        <h4 class="header-title">Crime Report</h4>
+                        <div>
+                            <a href="#" id="exportExcel" class="btn btn-primary btn-sm save" > Export To Excel </a>
+                        </div>
                     </div>
                     <div class="card-body" data-simplebar style="max-height: 300px;">
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                    </th>
                                     <th>GP Name</th>
                                     <th>Village</th>
                                     <th>HH ID</th>
-                                    <th>Crime</th>
-                                    <th>Type of Crime</th>
-                                    <th>Police</th>
-                                    <th>Action Take</th>
-                                    <th>Jail</th>
-                                    <th>Jail Relative</th>
-                                    <th>Case</th>
-                                    <th>Duration</th>
-                                    <th>Feel Safe</th>
-                                    <th>Police Visits</th>
+                                    <th>Admin Control Details (Call for emergency)</th>
+                                    <th>HH Head Name</th>
+                                    <th>Crime Reported past 1 year? (Yes/No)</th>
+                                    <th>Any Family members Jailed in past year? (Yes/No)</th>
+                                    <th>Police Presence in Area</th>
                                     <th>Vulnerability Flags</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input check-all" value="{{$value->id}}" name="hh[]">
+                                    </td>
                                     <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
                                     <td>{{$value->hh_id}}</td>
+                                    <td>{{$value->hh_id}}</td>
+                                    <td>{{$value->demographic->head_name}}</td>
                                     <td>{{$value->crime->crime==0?"No":"Yes"}}</td>
-                                    <td>{{$value->crime->toc}}</td>
-                                    <td>{{$value->crime->police}}</td>
-                                    <td>{{$value->crime->action_take}}</td>
                                     <td>{{$value->crime->jail}}</td>
-                                    <td>{{$value->crime->jail_relative}}</td>
-                                    <td>{{$value->crime->case}}</td>
-                                    <td>{{$value->crime->duration}}</td>
-                                    <td>{{$value->crime->feel_safe}}</td>
                                     <td>{{$value->crime->police_visits}}</td>
                                     <td>{{$value->crime->vulnerability_flags}}</td>
                                 </tr>
@@ -229,14 +239,14 @@
         mark();
 
         // Zoom In button
-        // document.getElementById("zoom-in").addEventListener("click", () => {
-        //     map.setZoom(map.getZoom() + 1);
-        // });
+        document.getElementById("zoom-in").addEventListener("click", () => {
+            map.setZoom(map.getZoom() + 1);
+        });
 
         // Zoom Out button
-        // document.getElementById("zoom-out").addEventListener("click", () => {
-        //     map.setZoom(map.getZoom() - 1);
-        // });
+        document.getElementById("zoom-out").addEventListener("click", () => {
+            map.setZoom(map.getZoom() - 1);
+        });
     }
 
     function mark()

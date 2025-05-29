@@ -15,6 +15,7 @@ use App\Models\Demographic;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use ZipArchive;
 
 use Illuminate\Http\Request;
 
@@ -63,6 +64,9 @@ class HouseholdController extends Controller
 
     public function dashboard()
     {
+        $breadcrumb = [
+            "title" => "Dashboard"
+        ];
         $cards['hhs'] = Surveyor::count('*');
         $cards['gp'] = Surveyor::distinct('village')->count('*');
         $cards['population'] = Demographic::selectRaw('SUM(total_member) as total')->first();
@@ -88,13 +92,13 @@ class HouseholdController extends Controller
             }
         }
 
-        return view('dashboard', compact('cards', 'chart'));
+        return view('dashboard', compact('breadcrumb', 'cards', 'chart'));
     }
 
     public function dataUpload(Request $request)
     {
         if ($request->isMethod('post')){
-            Excel::import(new UserImport, $request->file('file'));
+            // Excel::import(new UserImport, $request->file('file'));
             // Excel::import(new SurveyorImport, $request->file('file'));
             // Excel::import(new DemographicImport, $request->file('file'));
             // Excel::import(new CrimeImport, $request->file('file'));
@@ -105,7 +109,37 @@ class HouseholdController extends Controller
 
     public function downloadExcel(Request $request)
     {
-        return Excel::download(new HouseholdExport, 'household.xlsx');
+        return Excel::download(new HouseholdExport($request->hh??[]), 'household.xlsx');
+    }
+
+    public function downloadDocumentZip($id)
+    {
+        $surveyor = Surveyor::find($id);
+        $zip = new ZipArchive;
+
+        // Destination zip file path
+        $zipFileName = 'documents.zip';
+        $zipFilePath = storage_path("app/{$zipFileName}");
+
+        // Create or overwrite the zip file
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+            // Folder inside storage/app/ to zip
+            $folder = 'documents';
+            $files = Storage::files($folder);
+
+            foreach ($files as $file) {
+                // Get real path
+                $absolutePath = storage_path("app/{$file}");
+                // Add file to zip with relative path
+                $zip->addFile($absolutePath, basename($file));
+            }
+
+            $zip->close();
+
+            return response()->download($zipFilePath)->deleteFileAfterSend(true);
+        } else {
+            return response()->json(['error' => 'Could not create ZIP file.'], 500);
+        }
     }
 
     public function view(Request $request, $id)

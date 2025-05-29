@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :breadcrumb="$breadcrumb">
     <div class="page-container">
         <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1">
             <div class="col">
@@ -9,11 +9,6 @@
                                 <h5 class="text-muted fs-13 fw-bold text-uppercase" title="Total Registered HHs">
                                     Total Registered HHs</h5>
                                 <h3 class="my-2 py-1 fw-bold">{{$cards['hhs']}}</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-danger me-1"><i class="ri-arrow-left-down-box-line"></i>
-                                        9.19%</span>
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-primary-subtle text-primary rounded-circle fs-42">
@@ -32,11 +27,6 @@
                             <div>
                                 <h5 class="text-muted fs-13 fw-bold text-uppercase" title="Total Registered Population">Total Registered Population</h5>
                                 <h3 class="my-2 py-1 fw-bold">{{$cards['population']['total']}}</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-1"><i class="ri-arrow-left-up-box-line"></i>
-                                        4.67%</span>
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-success-subtle text-success rounded-circle fs-42">
@@ -56,11 +46,6 @@
                                 <h5 class="text-muted fs-13 fw-bold text-uppercase" title="Total Number of GPs">Total Number of GPs
                                 </h5>
                                 <h3 class="my-2 py-1 fw-bold">{{$cards['gp']}}</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-1"><i class="ri-arrow-left-up-box-line"></i>
-                                        2.85%</span>
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-warning-subtle text-warning rounded-circle fs-42">
@@ -79,11 +64,6 @@
                             <div>
                                 <h5 class="text-muted fs-13 fw-bold text-uppercase" title="Total  Number of Villages">Total  Number of Villages</h5>
                                 <h3 class="my-2 py-1 fw-bold">{{$cards['village']}}</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-1"><i class="ri-arrow-left-up-box-line"></i>
-                                        1.32%</span>
-                                    <span class="text-nowrap">Since last month</span>
-                                </p>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-info-subtle text-info rounded-circle fs-42">

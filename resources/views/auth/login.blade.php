@@ -7,8 +7,7 @@
                     
                     <img src="{{asset('logo.png')}}" alt="" style="width: 100px;margin: auto;">
 
-                    <h4 class="fw-semibold mb-2 mt-2 fs-18">CONSERVATION & DEVELOPMENT PLAN <br>
-                        FOR THE PARTICULARLY VULNERABLE TRIBAL GROUPS (PTGs)</h4>
+                    <h4 class="fw-semibold mb-2 mt-2 fs-18">CONSERVATION & DEVELOPMENT PLAN <br> <span class="text-muted mb-4">For the particularly vulnerable tribal groups (PTGs)</span></h4>
 
                     <p class="text-muted mb-4">LODHA DEVELOPMENT AGENCY, MORADA, MAYURBHANJ</p>
 
@@ -44,10 +43,8 @@
                         </div>
                     </form>
 
-                    <p class="text-muted fs-14 mb-4">Don't have an account? <a href="{{route('register')}}" class="fw-semibold text-danger ms-1">Sign Up !</a></p>
-
                     <p class="mt-auto mb-0">
-                        <script>document.write(new Date().getFullYear())</script> © Highdmin - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                        <script>document.write(new Date().getFullYear())</script> © AIO - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">LODHA DEVELOPMENT AGENCY</span>
                     </p>
                 </div>
             </div>

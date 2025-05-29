@@ -88,10 +88,19 @@
             </div>
             <div class="col-xl-7">
                 <div class="card">
-                    <div class="card-body p-0" style="position:relative;">
+                    <div class="card-body p-0" style="position:relative;height:403px;">
                         <div id="map" style="height:403px;"></div>
-                        <div style="position:absolute;left:5px;bottom:40px;width:20px;height:20px;background-color:white;" id="zoom-in">+</div>
-                        <div id="zoom-out" style="position:absolute;left:5px;bottom:10px;width:20px;height:20px;background-color:white;">-</div>
+                        <div class="hide-google">
+                            <p>Powered by AIO|CCDP | ArcGIS ESRI Tech</p>
+                        </div>
+                        <div class="map-button">
+                            <div><i class="ri-crosshair-2-line"></i></div>
+                            <div>
+                                <i class="ri-add-line" id="zoom-in"></i>
+                                <i class="ri-subtract-line" id="zoom-out"></i>
+                            </div>
+                            <div><i class="ri-stack-fill"></i></div>
+                        </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div>
@@ -100,40 +109,41 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header border-bottom border-dashed d-flex align-items-center">
-                        <h4 class="header-title">Demographic Data</h4>
+                    <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
+                        <h4 class="header-title">Demographic Report</h4>
+                        <div>
+                            <a href="#" id="exportExcel" class="btn btn-primary btn-sm save" > Export To Excel </a>
+                        </div>
                     </div>
                     <div class="card-body" data-simplebar style="max-height: 300px;">
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                    </th>
                                     <th>GP Name</th>
                                     <th>Village</th>
                                     <th>HH ID</th>
-                                    <th>Head Name</th>
+                                    <th>HH Head Name</th>
                                     <th>Gender</th>
-                                    <th>Age</th>
-                                    <th>Total Member</th>
-                                    <th>Male</th>
-                                    <th>Female</th>
-                                    <th>Child</th>
-                                    <th>Literacy</th>
+                                    <th>Family Size</th>
+                                    <th>Highest Literacy Level</th>
                                     <th>Primary Occupation</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input check-all" value="{{$value->id}}" name="hh[]">
+                                    </td>
                                     <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
                                     <td>{{$value->hh_id}}</td>
                                     <td>{{$value->demographic->head_name}}</td>
                                     <td>{{$value->demographic->gender}}</td>
-                                    <td>{{$value->demographic->age}}</td>
                                     <td>{{$value->demographic->total_member}}</td>
-                                    <td>{{$value->demographic->member_details['Male']}}</td>
-                                    <td>{{$value->demographic->member_details['Female']}}</td>
-                                    <td>{{$value->demographic->member_details['Child']}}</td>
                                     <td>{{$value->demographic->literacy}}</td>
                                     <td>{{$value->demographic->primary_occupation}}</td>
                                 </tr>

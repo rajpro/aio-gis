@@ -90,8 +90,19 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
             </div>
             <div class="col-xl-7">
                 <div class="card">
-                    <div class="card-body p-0">
-                        <div id="map" style="height:403px;"></div>
+                    <div class="card-body p-0" style="height:500px;">
+                        <div id="map" style="height:500px;"></div>
+                        <div class="hide-google">
+                            <p>Powered by AIO|CCDP | ArcGIS ESRI Tech</p>
+                        </div>
+                        <div class="map-button">
+                            <div><i class="ri-crosshair-2-line"></i></div>
+                            <div>
+                                <i class="ri-add-line" id="zoom-in"></i>
+                                <i class="ri-subtract-line" id="zoom-out"></i>
+                            </div>
+                            <div><i class="ri-stack-fill"></i></div>
+                        </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div>
@@ -100,48 +111,45 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header border-bottom border-dashed d-flex align-items-center">
-                        <h4 class="header-title">Socio Data</h4>
+                    <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
+                        <h4 class="header-title">Socio Economic Development Report</h4>
+                        <div>
+                            <a href="#" id="exportExcel" class="btn btn-primary btn-sm save" > Export To Excel </a>
+                        </div>
                     </div>
                     <div class="card-body" data-simplebar style="max-height: 300px;">
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                    </th>
                                     <th>GP Name</th>
                                     <th>Village</th>
                                     <th>HH ID</th>
-                                    <th>Forest Production</th>
-                                    <th>Forest Harvest (in Kg) per week</th>
-                                    <th>Household Income per Week</th>
-                                    <th>Household Income per Month</th>
-                                    <th>Seasonal Variation (Y/N)</th>
-                                    <th>If Y, Peak Month</th>
-                                    <th>Land Holding (Y/N)</th>
+                                    <th>HH Head Name</th>
+                                    <th>Forest Harvest (in T) (Jan-Mar'25)</th>
+                                    <th>Avg. PCI (Mar-May'25)</th>
+                                    <th>Land Ownership</th>
                                     <th>Land Use</th>
                                     <th>Support Received</th>
-                                    <th>Debt (Y/N)</th>
-                                    <th>Debt Source</th>
-                                    <th>Debt Reason</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input check-all" value="{{$value->id}}" name="hh[]">
+                                    </td>
                                     <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
                                     <td>{{$value->hh_id}}</td>
-                                    <td>{{$value->socio->forest_production}}</td>
+                                    <td>{{$value->demographic->head_name}}</td>
                                     <td>{{$value->socio->qty}}</td>
-                                    <td>{{$value->socio->income_per_wk}}</td>
-                                    <td>{{$value->socio->income_per_mo}}</td>
-                                    <td>{{$value->socio->seasonal_variation}}</td>
-                                    <td>{{$value->socio->peak_mo}}</td>
+                                    <td>{{$value->socio->pci}}</td>
                                     <td>{{$value->socio->land_holding}}</td>
                                     <td>{{$value->socio->land_use}}</td>
                                     <td>{{$value->socio->support_received}}</td>
-                                    <td>{{$value->socio->debt}}</td>
-                                    <td>{{$value->socio->debt_src}}</td>
-                                    <td>{{$value->socio->loan_reason}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -258,14 +266,14 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
         mark();
 
         // Zoom In button
-        // document.getElementById("zoom-in").addEventListener("click", () => {
-        //     map.setZoom(map.getZoom() + 1);
-        // });
+        document.getElementById("zoom-in").addEventListener("click", () => {
+            map.setZoom(map.getZoom() + 1);
+        });
 
         // Zoom Out button
-        // document.getElementById("zoom-out").addEventListener("click", () => {
-        //     map.setZoom(map.getZoom() - 1);
-        // });
+        document.getElementById("zoom-out").addEventListener("click", () => {
+            map.setZoom(map.getZoom() - 1);
+        });
     }
 
     function mark()

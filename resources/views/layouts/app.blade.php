@@ -1,3 +1,4 @@
+@props(['breadcrumb' => ['title' => 'Default Title']])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -38,13 +39,37 @@
             .popover {
                 width: 250px;
             }
+            .map-button {
+                position: absolute;
+                bottom:10px;
+                right:10px;
+                width: 30px;
+
+            }
+            .map-button div {
+                margin-bottom: 25px;
+            }
+            .map-button div i {
+                border-radius: 3px;
+                background:white;
+                padding:10px;
+                color:black;
+            }
+            .hide-google {
+                position: absolute;
+                bottom:0;
+                left:0;
+                width:100%;
+                height:25px;
+                background:#edf1f3;
+            }
         </style>
 
     </head>
     <body>
-        <x-jet-banner />
+        
         <div class="wrapper">
-            @livewire('navigation-menu')
+            @livewire('custom-navigation-menu', ["breadcrumb" => $breadcrumb])
 
             <!-- ============================================================== -->
             <!-- Start Page Content here -->

@@ -30,9 +30,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/households', [HouseholdController::class, 'index']);
     Route::get('/households/data', [HouseholdController::class, 'dataUpload']);
     Route::post('/households/data', [HouseholdController::class, 'dataUpload']);
-    Route::get('/households/download-excel', [HouseholdController::class, 'downloadExcel']);
+    Route::post('/households/download-excel', [HouseholdController::class, 'downloadExcel']);
     Route::get('/households/view/{id}', [HouseholdController::class, 'view']);
     Route::get('/households/status/{status}', [HouseholdController::class, 'status']);
+    Route::get('/households/downloadzip/{status}', [HouseholdController::class, 'downloadDocumentZip']);
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
     Route::get('/invoice/ticket', [InvoiceController::class, 'ticket'])->name('invoice.ticket');

@@ -5,7 +5,7 @@
                 <h4 class="header-title">Household Table</h4>
                 <div>
                     <a href="javascript:;" class="btn btn-dark btn-sm send-message" > Message </a>
-                    <a href="{{url('households/download-excel')}}" class="btn btn-primary btn-sm save" > Export To Excel </a>
+                    <a href="#" id="exportExcel" class="btn btn-primary btn-sm save" > Export To Excel </a>
                 </div>
             </div>
             <div class="card-body">
@@ -23,7 +23,7 @@
                             <div class="col-md-2">
                                 <div class="mb-0">
                                 <select class="form-select form-select-sm" name="searchfor" id="example-select">
-                                    <option>Send To</option>
+                                    <option>Filter by</option>
                                     <option value="head_name" {{(request('searchfor')=="head_name"?"selected":"")}}>Head Name</option>
                                     <option value="surveyor_name" {{(request('searchfor')=="surveyor_name"?"selected":"")}}>Suveyor Name</option>
                                     <option value="team" {{(request('searchfor')=="team"?"selected":"")}}>NGO</option>
@@ -47,10 +47,8 @@
                                 <div class="mb-2">
                                     <select class="form-select form-select-sm" name="searchfor" id="example-select">
                                         <option>Choose Category</option>
-                                        <option value="village">Village</option>
-                                        <option value="head_name">Head Name</option>
-                                        <option value="surveyor_name">Suveyor Name</option>
-                                        <option value="team">NGO</option>
+                                        <option value="head_name">Household Head</option>
+                                        <option value="surveyor_name">Suveyor</option>
                                     </select>
                                 </div>
                             </div>
@@ -95,7 +93,7 @@
                             @foreach($data as $key => $value)
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="form-check-input" name="hh[]" id="customCheck1">
+                                    <input type="checkbox" class="form-check-input check-all" value="{{$value->id}}" name="hh[]">
                                 </td>
                                 <td>{{$key+1}}</td>
                                 <td><img src="{{asset('no-image.jpg')}}" alt="" width="45" class="rounded-circle mx-1"></td>
@@ -140,7 +138,7 @@
                                         @if(!empty($value->remark))
                                         data-bs-toggle="popover" 
                                         data-bs-placement="left" 
-                                        data-bs-title="Comments" 
+                                        data-bs-title="Contact History" 
                                         data-bs-html="true" 
                                         data-bs-content="<ul>
                                             @foreach($value->remark as $k => $v)
@@ -169,6 +167,41 @@
 <script>
     $(".send-message").on("click", function() {
         $('.search-section').toggle();
+    });
+
+    $('#customCheck1').on('change', function () {
+        const isChecked = $(this).is(':checked');
+        $('.check-all').prop('checked', isChecked);
+    });
+
+    $('#exportExcel').on('click', function(e) {
+        e.preventDefault(); // Prevent default anchor behavior
+
+        // Get selected checkbox values
+        let selected = $("input[name='hh[]']:checked").map(function() {
+            return $(this).val();
+        }).get();
+
+        // Create a form dynamically
+        let form = $('<form>', {
+            action: "{{ url('households/download-excel') }}",
+            method: 'POST'
+        });
+
+        // Add CSRF token if using Laravel
+        form.append('@csrf');
+
+        // Add selected checkboxes as hidden inputs
+        selected.forEach(function(val) {
+            form.append($('<input>', {
+                type: 'hidden',
+                name: 'hh[]',
+                value: val
+            }));
+        });
+
+        // Append and submit the form
+        form.appendTo('body').submit();
     });
 </script>
 @endpush

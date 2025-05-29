@@ -90,7 +90,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach($data as $key => $value)
+                            @php
+                            $d = ['Conflict-Prone', 'Archived'];
+                            shuffle($d);
+                            @endphp
                             <tr>
                                 <td>
                                     <input type="checkbox" class="form-check-input check-all" value="{{$value->id}}" name="hh[]">
@@ -104,7 +109,7 @@
                                     {{$value->demographic->head_name}}
                                 </td>
                                 <td>{{$value->demographic->mobile}}</td>
-                                <td>Conflict-Prone/Archived</td>
+                                <td>{{$d[0]}}</td>
                                 <td>{{$value['surveyor_name']}}</td>
                                 <td>{{$value['team']}}</td>
                                 <td>

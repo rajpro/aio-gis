@@ -107,7 +107,9 @@
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>GP Name</th>
                                     <th>Village</th>
+                                    <th>HH ID</th>
                                     <th>Head Name</th>
                                     <th>Gender</th>
                                     <th>Age</th>
@@ -122,7 +124,9 @@
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
+                                    <td>{{$value->hh_id}}</td>
                                     <td>{{$value->demographic->head_name}}</td>
                                     <td>{{$value->demographic->gender}}</td>
                                     <td>{{$value->demographic->age}}</td>
@@ -246,7 +250,11 @@
             console.log(k,d);
             const mk = new google.maps.Marker({
                 position: k,
-                map
+                map,
+                icon: {
+                    url: "{{asset('demographics.png')}}",
+                    scaledSize: new google.maps.Size(32, 32), // set the size here
+                },
             });
 
             mk.addListener("click", function() {

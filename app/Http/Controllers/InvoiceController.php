@@ -15,4 +15,9 @@ class InvoiceController extends Controller
     {
         return view('invoice.create');
     }
+
+    public function ticket()
+    {
+        return view('invoice.ticket');
+    }
 }

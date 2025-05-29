@@ -30,4 +30,9 @@ class Surveyor extends Model
     {
         return $this->hasOne(Socio::class, 'surveyor_id', 'id');
     }
+
+    public function remark()
+    {
+        return $this->hasMany(Remark::class, 'surveyor_id', 'id');
+    }
 }

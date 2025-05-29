@@ -106,7 +106,9 @@
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>GP Name</th>
                                     <th>Village</th>
+                                    <th>HH ID</th>
                                     <th>Crime</th>
                                     <th>Type of Crime</th>
                                     <th>Police</th>
@@ -123,7 +125,9 @@
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
+                                    <td>{{$value->hh_id}}</td>
                                     <td>{{$value->crime->crime==0?"No":"Yes"}}</td>
                                     <td>{{$value->crime->toc}}</td>
                                     <td>{{$value->crime->police}}</td>
@@ -245,6 +249,10 @@
             const mk = new google.maps.Marker({
                 position: k,
                 map,
+                icon: {
+                    url: "{{asset('police-line.png')}}",
+                    scaledSize: new google.maps.Size(32, 32), // set the size here
+                },
                 title: `Marker ${index + 1}`
             });
 

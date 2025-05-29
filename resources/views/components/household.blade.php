@@ -85,7 +85,7 @@
                                 <th>Village Name</th>
                                 <th>Household ID</th>
                                 <th>Surveyor Name</th>
-                                <th>Team</th>
+                                <th>NGO</th>
                                 <th>Last Version Update</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
@@ -136,6 +136,20 @@
                                         @endif
                                         >
                                         <i class="ri-folders-line"></i></a>
+                                    <a href="javascript:;" class=" fs-20 p-1" style="color:gray;" 
+                                        @if(!empty($value->remark))
+                                        data-bs-toggle="popover" 
+                                        data-bs-placement="left" 
+                                        data-bs-title="Comments" 
+                                        data-bs-html="true" 
+                                        data-bs-content="<ul>
+                                            @foreach($value->remark as $k => $v)
+                                            <li>{{$v->remark}}</li>
+                                            @endforeach
+                                        </ul>"
+                                        @endif
+                                        >
+                                        <i class="ri-message-2-line"></i></a>
                                     <!-- <a href="javascript: void(0);" data-hh-id="{{$value['id']}}" data-bs-toggle="modal" data-bs-target="#bs-modal-lg" class="full-view fs-20 p-1"> <i class="ri-mac-line"></i></a> -->
                                 </td>
                             </tr>

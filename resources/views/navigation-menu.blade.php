@@ -169,6 +169,12 @@
               </li>
               @endcan
 
+                <li class="side-nav-item">
+                    <a href="{{route('invoice.ticket')}}" class="side-nav-link">
+                        <span class="menu-icon"><i class="ri-ticket-2-line"></i></span>
+                        <span class="menu-text"> Tickets </span>
+                    </a>
+                </li>
               @can('update help')
               <li class="side-nav-item">
                   <a href="{{url('/')}}" class="side-nav-link">

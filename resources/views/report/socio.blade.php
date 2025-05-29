@@ -107,7 +107,9 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
                         <table class="table table-bordered mb-0">
                             <thead>
                                 <tr>
+                                    <th>GP Name</th>
                                     <th>Village</th>
+                                    <th>HH ID</th>
                                     <th>Forest Production</th>
                                     <th>Forest Harvest (in Kg) per week</th>
                                     <th>Household Income per Week</th>
@@ -125,7 +127,9 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
                             <tbody>
                                 @foreach($surveyor as $key => $value)
                                 <tr>
+                                    <td>{{$value->block}}</td>
                                     <td>{{$value->village}}</td>
+                                    <td>{{$value->hh_id}}</td>
                                     <td>{{$value->socio->forest_production}}</td>
                                     <td>{{$value->socio->qty}}</td>
                                     <td>{{$value->socio->income_per_wk}}</td>
@@ -274,7 +278,10 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
             const mk = new google.maps.Marker({
                 position: k,
                 map,
-                title: `Marker ${index + 1}`
+                icon: {
+                    url: "{{asset('partners.png')}}",
+                    scaledSize: new google.maps.Size(32, 32), // set the size here
+                }
             });
 
             mk.addListener("click", function() {

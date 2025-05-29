@@ -99,8 +99,7 @@
                                 <td>{{$value['surveyor']}}</td>
                                 <td>{{$value['ngo']}}</td>
                                 <td class="text-center text-muted">
-                                    <a href="{{route('users.edit', $value['id'])}}" class="full-view fs-20 p-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To Edit"> <i class="ri-edit-line"></i></a>
-                                    <a href="javascript: void(0);" class="full-view fs-20 p-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To Delete"> <i class="ri-delete-bin-line"></i></a>
+                                    <a href="javascript:;" class="full-view fs-20 p-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reset Password"> <i class="ri-edit-line"></i></a>
                                 </td>
                             </tr>
                             @endforeach

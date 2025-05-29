@@ -29,7 +29,6 @@ class InvoiceController extends Controller
             
             $d = Surveyor::where("hh_id", $request->id)->first();
             $d = Demographic::where('surveyor_id', $d->id)->first();
-            dd($d->toArray());
             $c = $d->documents;
             $l = $request->file('image')->store('documents', 'public');
             $c[$request->name] = $l;

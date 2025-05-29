@@ -6,7 +6,7 @@
                 <div class="card border-secondary border">
                     <div class="card-body">
                         <h5 class="fs-13 fw-bold text-uppercase">Total Government Investment</h5>
-                        <p class="card-text">"YoY Change: −9.7% <br>QoQ Change: -"</p>
+                        <p class="card-text">YoY Change: −9.7% <br>QoQ Change: -</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
                                 <h3 class="my-2 py-1 fw-bold">₹855.2 Lakhs</h3>
@@ -24,7 +24,7 @@
                 <div class="card border-primary border">
                     <div class="card-body">
                         <h5 class="fs-13 fw-bold text-uppercase">Total Forest Harvest</h5>
-                        <p class="card-text">"YoY Increase: +6.3% <br> QoQ Increase: +4.9%"</p>
+                        <p class="card-text">YoY Increase: +6.3% <br> QoQ Increase: +4.9%</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
                                 <h3 class="my-2 py-1 fw-bold">1,879.80  Tonnes</h3>
@@ -42,7 +42,7 @@
                 <div class="card border-warning border">
                     <div class="card-body">
                         <h5 class="fs-13 fw-bold text-uppercase">Total Gross Revenue Generated</h5>
-                        <p class="card-text">"YoY Increase: +36% <br> QoQ Increase: +7%"</p>
+                        <p class="card-text">YoY Increase: +36% <br> QoQ Increase: +7%</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
                                 <h3 class="my-2 py-1 fw-bold">₹1,419.9 Lakhs</h3>
@@ -60,7 +60,7 @@
                 <div class="card border-info border">
                     <div class="card-body">
                         <h5 class="fs-13 fw-bold text-uppercase">Average Per Capita Income (monthly)</h5>
-                        <p class="card-text">"YoY Increase: +135% <br>QoQ Increase: +53%"</p>
+                        <p class="card-text">YoY Increase: +135% <br>QoQ Increase: +53%</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
                                 <h3 class="my-2 py-1 fw-bold">₹1,802</h3>

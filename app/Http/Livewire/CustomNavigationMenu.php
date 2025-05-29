@@ -6,12 +6,6 @@ use Livewire\Component;
 
 class CustomNavigationMenu extends Component
 {
-    public $breadcrumb;
-
-    public function mount($breadcrumb)
-    {
-        $this->breadcrumb = $breadcrumb;
-    }
 
     public function render()
     {

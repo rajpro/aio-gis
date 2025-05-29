@@ -23,6 +23,11 @@ class InvoiceController extends Controller
         return view('invoice.ticket');
     }
 
+    public function survey()
+    {
+        return view('invoice.survey');
+    }
+
     public function document(Request $request)
     {
         if ($request->isMethod('post')){

@@ -1,4 +1,4 @@
-<x-app-layout :breadcrumb="$breadcrumb">
+<x-app-layout>
     <div class="page-container">
         <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1">
             <div class="col">
@@ -135,11 +135,11 @@
                             <table class="table mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Gram Panchayat</th>
-                                        <th>Total Gross Revenue (in INR)</th>
-                                        <th>% Contribution</th>
-                                        <th>Last 12m (trendline)</th>
-                                        <th>Volume of Forest Harvest</th>
+                                        <th>Gram Panchayat Name</th>
+                                        <th>Total Gross Revenue (in INR L)</th>
+                                        <th>% Contribution to Total Revenue</th>
+                                        <th>Last 12m Rev (trendline)</th>
+                                        <th>Volume of Forest Harvest (in T)</th>
                                     </tr>
                                 </thead>
                                 <tbody>

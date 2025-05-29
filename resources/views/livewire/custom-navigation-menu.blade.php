@@ -14,7 +14,7 @@
               <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
           </span>
       </a>
-      <p style="margin:0 25px;">CONSERVATION & DEVELOPMENT PLAN (for PGTs)</p>
+      <p style="margin:0 25px;"><b>CONSERVATION & DEVELOPMENT PLAN</b> <br> (for PGTs)</p>
 
       <!-- Sidebar Hover Menu Toggle Button -->
       
@@ -118,12 +118,12 @@
               @endcan
 
               @can('view setting')
-              <li class="side-nav-item">
+              <!-- <li class="side-nav-item">
                   <a href="{{url('/households/pending')}}" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-settings-3-line"></i></span>
                       <span class="menu-text"> Setting </span>
                   </a>
-              </li>
+              </li> -->
               @endcan
 
               @can('update help')
@@ -137,7 +137,7 @@
               
               @can('update help')
               <li class="side-nav-item">
-                  <a href="{{url('/')}}" class="side-nav-link">
+                  <a href="{{url('/survey')}}" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-flag-line"></i></span>
                       <span class="menu-text"> Manage Survey </span>
                   </a>
@@ -168,12 +168,12 @@
               @endcan
 
               @can('update help')
-              <li class="side-nav-item">
+              <!-- <li class="side-nav-item">
                   <a href="{{url('/')}}" class="side-nav-link">
                       <span class="menu-icon"><i class="ri-flag-line"></i></span>
                       <span class="menu-text"> System Settings </span>
                   </a>
-              </li>
+              </li> -->
               @endcan
 
               @endcan

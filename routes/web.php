@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
     Route::get('/invoice/ticket', [InvoiceController::class, 'ticket'])->name('invoice.ticket');
     Route::get('/invoice/document', [InvoiceController::class, 'document']);
+    Route::get('/survey', [InvoiceController::class, 'survey']);
     Route::post('/invoice/document', [InvoiceController::class, 'document']);
 
     // Ajax Calls

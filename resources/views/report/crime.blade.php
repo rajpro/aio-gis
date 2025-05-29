@@ -278,7 +278,7 @@
                 position: k,
                 map,
                 icon: {
-                    url: "{{asset('police-line.png')}}",
+                    url: "{{asset('alarm.png')}}",
                     scaledSize: new google.maps.Size(32, 32), // set the size here
                 },
                 title: `Marker ${index + 1}`

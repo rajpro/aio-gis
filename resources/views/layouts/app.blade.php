@@ -1,4 +1,3 @@
-@props(['breadcrumb'=>['title'=>"asldkfj"]])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -6,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title> Lodha PVTG CCDP Plan </title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -69,7 +68,7 @@
     <body>
         
         <div class="wrapper">
-            @livewire('custom-navigation-menu', ["breadcrumb" => $breadcrumb])
+            @livewire('custom-navigation-menu')
 
             <!-- ============================================================== -->
             <!-- Start Page Content here -->

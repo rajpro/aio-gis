@@ -17,9 +17,7 @@
       <p style="margin:0 25px;">CONSERVATION & DEVELOPMENT PLAN (for PGTs)</p>
 
       <!-- Sidebar Hover Menu Toggle Button -->
-      <button class="button-sm-hover">
-          <i class="ri-circle-line align-middle"></i>
-      </button>
+      
 
       <!-- Full Sidebar Menu Close Button -->
       <button class="button-close-fullsidebar">

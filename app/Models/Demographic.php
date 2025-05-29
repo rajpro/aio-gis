@@ -16,13 +16,17 @@ class Demographic extends Model
         "documents" => 'array'
     ];
 
-    public function getDocumentsAttribute($value)
+    protected $appends = [
+        'documents_url'
+    ];
+
+    public function getDocumentsUrlAttribute()
     {
         $result = [];
-        if(!empty($value)){
-            $d = (array)json_decode($value);
+        if(!empty($this->documents)){
+            $d = $this->documents;
             foreach($d as $key => $v){
-                $result[$key] = asset("storage/documents/".$v);
+                $result[$key] = asset("storage/".$v);
             }
         }
         

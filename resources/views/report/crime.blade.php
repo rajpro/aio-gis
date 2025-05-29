@@ -83,6 +83,20 @@
                         <h4 class="header-title">Crime Distribution by Type</h4>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex flex-wrap gap-1 mx-3">
+                            <button type="button" class="btn btn-light btn-sm">
+                                All
+                            </button>
+                            <button type="button" class="btn btn-light active btn-sm">
+                                1M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                6M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                1Y
+                            </button>
+                        </div>
                         <div id="simple-pie" class="apex-charts" data-colors="#777edd,#45bbe0,#0acf97,#fa5c7c,#e3eaef"></div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
@@ -163,7 +177,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h4 id="offcanvasRightLabel">Lodha PVGT Crime</h4>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close text-reset close-offset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
@@ -216,6 +230,10 @@
     const initialZoom = 9;
     const initialCenter = { lat: 21.912284221895693, lng: 86.40897624871276 };
     const polygonCoords = {!!json_encode(config('constants.mayurbhanj'))!!}.map(coord => ({ lat: coord[1], lng: coord[0] }));
+
+    $(".close-offset").on("click", function() {
+        myOffcanvas.hide();
+    });
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {

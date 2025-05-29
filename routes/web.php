@@ -37,6 +37,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/create', [InvoiceController::class, 'create'])->name('invoice.create');
     Route::get('/invoice/ticket', [InvoiceController::class, 'ticket'])->name('invoice.ticket');
+    Route::get('/invoice/document', [InvoiceController::class, 'document']);
+    Route::post('/invoice/document', [InvoiceController::class, 'document']);
 
     // Ajax Calls
     Route::get('/households/sidebar/{string}/{id}', [HouseholdController::class, 'demoAjax']);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Demographic;
+use App\Models\Surveyor;
 
 class InvoiceController extends Controller
 {
@@ -19,5 +21,22 @@ class InvoiceController extends Controller
     public function ticket()
     {
         return view('invoice.ticket');
+    }
+
+    public function document(Request $request)
+    {
+        if ($request->isMethod('post')){
+            
+            $d = Surveyor::where("hh_id", $request->id)->first();
+            $d = Demographic::where('surveyor_id', $d->id)->first();
+            dd($d->toArray());
+            $c = $d->documents;
+            $l = $request->file('image')->store('documents', 'public');
+            $c[$request->name] = $l;
+            $d->documents = $c;
+            $d->update();
+            return redirect()->back();
+        }
+        return view('invoice.document');
     }
 }

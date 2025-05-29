@@ -83,6 +83,20 @@
                         <h4 class="header-title">Crime Reported Trendline</h4>
                     </div>
                     <div class="card-body p-0">
+                        <div class="d-flex flex-wrap gap-1 mx-3">
+                            <button type="button" class="btn btn-light btn-sm">
+                                All
+                            </button>
+                            <button type="button" class="btn btn-light active btn-sm">
+                                1M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                6M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                1Y
+                            </button>
+                        </div>
                         <div id="area-chart-datetime" class="apex-charts" data-colors="#45bbe0"></div>
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
@@ -93,6 +107,20 @@
                         <h4 class="header-title">Area-wise Crime Volume</h4>
                     </div>
                     <div class="card-body p-0">
+                        <div class="d-flex flex-wrap gap-1 mx-3">
+                            <button type="button" class="btn btn-light btn-sm">
+                                All
+                            </button>
+                            <button type="button" class="btn btn-light active btn-sm">
+                                1M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                6M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                1Y
+                            </button>
+                        </div>
                         <div id="basic-treemap" class="apex-charts" data-colors="#39afd1"></div>
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
@@ -102,9 +130,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="d-flex card-header justify-content-between align-items-center">
-                        
-                    </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table mb-0">

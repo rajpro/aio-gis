@@ -60,11 +60,10 @@
                 <div class="card border-info border">
                     <div class="card-body">
                         <h5 class="fs-13 fw-bold text-uppercase">Average Per Capita Income (monthly)</h5>
-                        <p class="card-text">"YoY Increase: +135% <br>
-QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
+                        <p class="card-text">"YoY Increase: +135% <br>QoQ Increase: +53%"</p>
                         <div class="d-flex align-items-center gap-2 justify-content-between">
                             <div>
-                                <h3 class="my-2 py-1 fw-bold">₹1,802 (from ~₹768 base)</h3>
+                                <h3 class="my-2 py-1 fw-bold">₹1,802</h3>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-info-subtle text-info rounded-circle fs-42">
@@ -84,6 +83,20 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
                         <h4 class="header-title">Socio Economic Development Factors under LABHA Scheme</h4>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex flex-wrap gap-1 mx-3">
+                            <button type="button" class="btn btn-light btn-sm">
+                                All
+                            </button>
+                            <button type="button" class="btn btn-light active btn-sm">
+                                1M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                6M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                1Y
+                            </button>
+                        </div>
                         <div id="stacked-bar" class="apex-charts" data-colors="#777edd,#0acf97,#fa5c7c,#45bbe0,#39afd1"></div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
@@ -164,7 +177,7 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h4 id="offcanvasRightLabel">Lodha PVGT Socio</h4>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close text-reset close-offset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
@@ -276,6 +289,10 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
         });
     }
 
+    $(".close-offset").on("click", function() {
+        myOffcanvas.hide();
+    });
+
     function mark()
     {
         const markers = {!!$map!!};
@@ -287,7 +304,7 @@ QoQ Increase (from ₹1,178 in Oct–Dec 2024): +53%"</p>
                 position: k,
                 map,
                 icon: {
-                    url: "{{asset('partners.png')}}",
+                    url: "{{asset('round.png')}}",
                     scaledSize: new google.maps.Size(32, 32), // set the size here
                 }
             });

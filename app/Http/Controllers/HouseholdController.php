@@ -34,14 +34,14 @@ class HouseholdController extends Controller
         // dd("working");
 
         if(empty($request->searchfor)){
-            $data = Surveyor::paginate(50)->withQueryString();
+            $data = Surveyor::where('status', 'Active')->paginate(50)->withQueryString();
         }else if($request->searchfor == "head_name"){
             $search = $request->search;
-            $data = Surveyor::whereHas('demographic', function($q) use ($search) {
+            $data = Surveyor::where('status', 'Active')->whereHas('demographic', function($q) use ($search) {
                 $q->where('head_name', 'like', '%' . $search . '%');
             })->paginate(50)->withQueryString();
         }else{
-            $data = Surveyor::where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
+            $data = Surveyor::where('status', 'Active')->where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
         }
         return view('components.household', compact('data'));
     }
@@ -59,7 +59,14 @@ class HouseholdController extends Controller
         }else{
             $data = Surveyor::where('status', $status)->where($request->searchfor, "like", "%".$request->search."%")->paginate(50)->withQueryString();
         }
-        return view('components.household', compact('data'));
+        if($status == "Surveyed"){
+            return view('components.incomplete', compact('data'));
+        }elseif($status == "Monitoring"){
+            return view('components.pending', compact('data'));
+        }else{
+            return view('components.household', compact('data'));
+        }
+        
     }
 
     public function dashboard()

@@ -82,7 +82,7 @@
                                 <th>Household ID</th>
                                 <th>Household Head</th>
                                 <th>Contact No.</th>
-                                <th>Completion Date</th>
+                                <th>Reason for Incomplete</th>
                                 <th>Surveyor Name</th>
                                 <th>Surveyor Team</th>
                                 <th>Status</th>
@@ -104,7 +104,7 @@
                                     {{$value->demographic->head_name}}
                                 </td>
                                 <td>{{$value->demographic->mobile}}</td>
-                                <td>{{$value['lvu']}}</td>
+                                <td>No-contact/Migration-Prone</td>
                                 <td>{{$value['surveyor_name']}}</td>
                                 <td>{{$value['team']}}</td>
                                 <td>

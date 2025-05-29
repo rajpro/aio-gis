@@ -82,6 +82,20 @@
                         <h4 class="header-title">Lodha PVGT Group Population Diversity</h4>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex flex-wrap gap-1 mx-3">
+                            <button type="button" class="btn btn-light btn-sm">
+                                All
+                            </button>
+                            <button type="button" class="btn btn-light active btn-sm">
+                                1M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                6M
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm">
+                                1Y
+                            </button>
+                        </div>
                         <div id="statistics-chart" class="apex-charts" data-colors="#02c0ce,#777edd"></div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
@@ -161,7 +175,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h4 id="offcanvasRightLabel">Lodha PVGT Demographics</h4>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close text-reset close-offset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
@@ -250,6 +264,10 @@
             map.setZoom(map.getZoom() - 1);
         });
     }
+
+    $(".close-offset").on("click", function() {
+        myOffcanvas.hide();
+    });
 
     function mark()
     {

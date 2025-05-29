@@ -1,4 +1,4 @@
-@props(['breadcrumb' => ['title' => 'Default Title']])
+@props(['breadcrumb'=>['title'=>"asldkfj"]])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

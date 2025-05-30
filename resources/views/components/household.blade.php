@@ -68,7 +68,7 @@
                 </div>
                 
 
-                <div class="table-responsive-sm">
+                <div class="table-responsive-sm" data-simplebar>
                     <table class="table table-bordered mb-0">
                         <thead>
                             <tr>
@@ -80,11 +80,9 @@
                                 <th>GP Block</th>
                                 <th>Village Name</th>
                                 <th>Household ID</th>
-                                <th>Household Head</th>
                                 <th>Contact No.</th>
                                 <th>Completion Date</th>
                                 <th>Surveyor Name</th>
-                                <th>Surveyor Team</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -100,13 +98,9 @@
                                 <td>{{$value['block']}}</td>
                                 <td>{{$value['village']}}</td>
                                 <td>{{$value['hh_id']}}</td>
-                                <td>
-                                    {{$value->demographic->head_name}}
-                                </td>
                                 <td>{{$value->demographic->mobile}}</td>
                                 <td>{{$value['lvu']}}</td>
                                 <td>{{$value['surveyor_name']}}</td>
-                                <td>{{$value['team']}}</td>
                                 <td>
                                     @if($value['status'] == "Active")
                                     <i class="ri-circle-fill fs-12 text-success"></i>

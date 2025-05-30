@@ -53,7 +53,7 @@
                               <a href="{{route('report.index', ['page' => 'crime'])}}" class="side-nav-link">Crime Report</a>
                           </li>
                           <li class="side-nav-item">
-                              <a href="{{route('report.index', ['page' => 'socio'])}}" class="side-nav-link">Socio Economic Development Report</a>
+                              <a href="{{route('report.index', ['page' => 'socio'])}}" class="side-nav-link">Socio Economic Dev Report</a>
                           </li>
                       </ul>
                   </div>

@@ -163,6 +163,65 @@
                 </div> 
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="d-flex card-header justify-content-between align-items-center">
+                        <h4 class="header-title">List of NGOs</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive" data-simplebar style="max-height:300px;">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sl. No</th>
+                                        <th>NGO Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($ngo as $key => $value)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$value->team}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive-->
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="d-flex card-header justify-content-between align-items-center">
+                        <h4 class="header-title">List of Villages with GP Name</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive" data-simplebar style="max-height:300px;">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sl. No</th>
+                                        <th>GP</th>
+                                        <th>Village</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($village as $key => $value)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$value->block}}</td>
+                                        <td>{{$value->village}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive-->
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+        </div>
     </div>
 
     @push('script')

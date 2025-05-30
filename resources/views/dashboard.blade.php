@@ -45,7 +45,7 @@
                             <div>
                                 <h5 class="text-muted fs-13 fw-bold text-uppercase" title="Total Number of GPs">Total Number of GPs
                                 </h5>
-                                <h3 class="my-2 py-1 fw-bold">{{$cards['gp']}}</h3>
+                                <h3 class="my-2 py-1 fw-bold">{{$cards['village']}}</h3>
                             </div>
                             <div class="avatar-xl flex-shrink-0">
                                 <span class="avatar-title bg-warning-subtle text-warning rounded-circle fs-42">

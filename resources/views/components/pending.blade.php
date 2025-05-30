@@ -124,7 +124,7 @@
                                     {{$value['status']}}</td>
                                 <td class="text-center text-muted">
                                     <a href="{{url('/households/view/'.$value['id'])}}" target="_blank" class=" fs-20 p-1" style="color:gray;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click To View"> <i class="ri-mac-line"></i></a>
-                                    <a href="javascript:;" class=" fs-20 p-1" style="color:#0acf97;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status"> <i class="ri-bank-card-line"></i></a>
+                                    <a href="javascript:;" class=" fs-20 p-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status"> <i class="text-danger ri-bank-card-line"></i></a>
                                     <a href="javascript:;" class=" fs-20 p-1" style="color:gray;" 
                                         @if(!empty($value->demographic->documents))
                                         data-bs-toggle="popover" 

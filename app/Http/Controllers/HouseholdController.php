@@ -152,16 +152,7 @@ class HouseholdController extends Controller
     public function view(Request $request, $id)
     {
         $data = Surveyor::find($id);
-        $demo_column = collect(Schema::getColumnListing('demographics'))
-            ->reject(fn($col) => in_array($col, ['id', 'created_at', 'surveyor_id', 'updated_at']))
-            ->values();
-        $crime_column = collect(Schema::getColumnListing('crimes'))
-            ->reject(fn($col) => in_array($col, ['id', 'created_at', 'surveyor_id', 'updated_at']))
-            ->values();
-        $socio_column = collect(Schema::getColumnListing('socios'))
-            ->reject(fn($col) => in_array($col, ['id', 'created_at', 'surveyor_id', 'updated_at']))
-            ->values();
-        $pdf = Pdf::loadView('components.modals.household', compact('demo_column', 'crime_column', 'socio_column', 'data'));
+        $pdf = Pdf::loadView('components.modals.household', compact('data'));
         return $pdf->stream();
     }
 

@@ -94,15 +94,15 @@
                                     <td class="dtr-control sorting_1" tabindex="0"><b>#1256</b></td>
                                     <td>
                                         <a href="javascript: void(0);" class="text-reset">
-                                            <span class="ms-1">George Llanes</span>
+                                            <span class="ms-1">Sambhav</span>
                                         </a>
                                     </td>
 
-                                    <td> Support for theme </td>
+                                    <td> Support for Police Case </td>
 
                                     <td>
                                         <a href="javascript: void(0);" class="text-reset">
-                                            <span class="ms-1">Lauren Deo</span>
+                                            <span class="ms-1">Tapan Kumar Soren</span>
                                         </a>
                                     </td>
 

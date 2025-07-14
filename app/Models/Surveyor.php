@@ -10,7 +10,7 @@ class Surveyor extends Model
 {
     use HasFactory, SpatialTrait;
 
-    protected $fillable = ["village", 'block', 'location', 'hh_id', 'survey_date', 'surveyor_name', 'team', 'lvu'];
+    protected $fillable = ["village", 'block', 'location', 'hh_id', 'survey_date', 'surveyor_name', 'team', 'lvu', 'status'];
 
     protected $spatialFields = [
         'location',
